@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Persona 3 Portable — SEES Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0608; --surface:#120d10; --card-bg:#160f14;
+  --border:rgba(220,80,100,0.12); --border2:rgba(220,80,100,0.25);
+  --red:#e84060; --red2:#ff6b85;
+  --cream:#f0e6d8; --gold:#d4a84b; --gold2:#f0c86e;
+  --text:#e8ddd5; --muted:#7a6870; --muted2:#a09098;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-weight:300;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");opacity:0.45;}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-rows:auto 1fr auto;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;
+  background:radial-gradient(ellipse 90% 60% at 50% 110%,rgba(232,64,96,0.22) 0%,transparent 65%),
+             radial-gradient(ellipse 50% 80% at 85% 40%,rgba(212,168,75,0.07) 0%,transparent 55%),
+             radial-gradient(ellipse 60% 50% at 15% 25%,rgba(232,64,96,0.08) 0%,transparent 50%);
+  pointer-events:none;}
+.hero-frame{position:absolute;inset:24px;border:1px solid rgba(220,80,100,0.07);pointer-events:none;}
+.hero-frame::before,.hero-frame::after{content:'';position:absolute;width:70px;height:70px;border-color:var(--red);border-style:solid;}
+.hero-frame::before{top:-1px;left:-1px;border-width:2px 0 0 2px;}
+.hero-frame::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0;}
+
+/* Floating orbs */
+.orb{position:absolute;border-radius:50%;pointer-events:none;animation:pulse 6s ease-in-out infinite;}
+.orb1{width:300px;height:300px;top:-80px;right:10%;background:radial-gradient(circle,rgba(232,64,96,0.08),transparent 70%);animation-delay:0s;}
+.orb2{width:200px;height:200px;bottom:20%;left:5%;background:radial-gradient(circle,rgba(212,168,75,0.06),transparent 70%);animation-delay:2s;}
+.orb3{width:150px;height:150px;top:40%;right:20%;background:radial-gradient(circle,rgba(232,64,96,0.05),transparent 70%);animation-delay:4s;}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:0.6;}50%{transform:scale(1.15);opacity:1;}}
+
+.hero-nav{position:relative;z-index:10;padding:32px 64px;display:flex;align-items:center;justify-content:space-between;animation:fadeIn 1s ease both;}
+.logo{display:flex;flex-direction:column;gap:2px;}
+.logo-sub{font-size:9px;letter-spacing:0.38em;text-transform:uppercase;color:var(--red);font-weight:500;}
+.logo-main{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--cream);letter-spacing:0.06em;}
+.nav-links{display:flex;gap:40px;}
+.nav-link{font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted2);cursor:pointer;transition:color 0.25s;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+.nav-link:hover,.nav-link.active{color:var(--cream);}
+
+.hero-center{position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;animation:heroIn 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s both;}
+.eyebrow{font-size:10px;letter-spacing:0.45em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;gap:20px;}
+.eyebrow::before,.eyebrow::after{content:'';flex:1;max-width:100px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0.5;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.8rem,11vw,10rem);font-weight:900;line-height:0.88;color:var(--cream);text-shadow:0 0 100px rgba(232,64,96,0.28),0 0 200px rgba(232,64,96,0.1);margin-bottom:10px;}
+.hero-title em{font-style:italic;color:var(--red2);text-shadow:0 0 60px rgba(232,64,96,0.7),0 0 120px rgba(232,64,96,0.3);}
+.hero-sub{font-size:clamp(0.85rem,1.8vw,1.3rem);font-weight:200;color:var(--muted2);letter-spacing:0.18em;text-transform:uppercase;margin-bottom:52px;}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+.btn-primary{padding:15px 40px;background:var(--red);color:#fff;font-size:11px;letter-spacing:0.28em;text-transform:uppercase;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;font-weight:500;position:relative;overflow:hidden;}
+.btn-primary::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.15),transparent);opacity:0;transition:opacity 0.3s;}
+.btn-primary:hover{background:var(--red2);transform:translateY(-3px);box-shadow:0 12px 40px rgba(232,64,96,0.45);}
+.btn-primary:hover::before{opacity:1;}
+.btn-ghost{padding:15px 40px;background:transparent;color:var(--cream);font-size:11px;letter-spacing:0.28em;text-transform:uppercase;border:1px solid var(--border2);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.3s;font-weight:300;}
+.btn-ghost:hover{border-color:rgba(240,230,216,0.5);background:rgba(240,230,216,0.04);transform:translateY(-2px);}
+
+.hero-bottom{position:relative;z-index:5;padding:32px 64px;display:flex;align-items:flex-end;justify-content:space-between;animation:fadeIn 1.4s ease 0.4s both;}
+.hero-stats{display:flex;gap:56px;}
+.hstat{display:flex;flex-direction:column;gap:4px;}
+.hstat-n{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--red2);line-height:1;}
+.hstat-l{font-size:9px;letter-spacing:0.28em;text-transform:uppercase;color:var(--muted);}
+.scroll-hint{font-size:9px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px;}
+.scroll-line{width:1px;height:52px;background:linear-gradient(to bottom,var(--muted),transparent);}
+
+/* MAIN */
+.page-main{position:relative;z-index:5;}
+
+/* SECTION */
+.chars-section,.about-section{display:none;}
+.chars-section.visible,.about-section.visible{display:block;}
+
+.sec-header{padding:80px 64px 44px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-top:1px solid var(--border);}
+.sec-title-group{display:flex;flex-direction:column;gap:10px;}
+.sec-label{font-size:10px;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:var(--cream);line-height:1;}
+
+.filter-group{display:flex;gap:6px;flex-wrap:wrap;}
+.ftag{padding:6px 16px;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;background:transparent;border:1px solid var(--border);color:var(--muted2);cursor:pointer;transition:all 0.22s;font-family:'DM Sans',sans-serif;}
+.ftag:hover{border-color:var(--red2);color:var(--cream);}
+.ftag.on{border-color:var(--red);color:var(--red2);background:rgba(232,64,96,0.08);}
+
+.search-row{padding:0 64px 36px;display:flex;align-items:center;gap:18px;}
+.sw{position:relative;max-width:400px;flex:1;}
+.sw svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
+#search{width:100%;padding:12px 14px 12px 44px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color 0.25s;}
+#search::placeholder{color:var(--muted);}
+#search:focus{border-color:var(--red2);}
+.rcount{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+
+/* GRID */
+.char-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:2px;margin:0 64px;background:var(--border);border:1px solid var(--border);}
+
+/* CARD */
+.char-card{background:var(--card-bg);position:relative;overflow:hidden;cursor:pointer;transition:background 0.25s,transform 0.35s cubic-bezier(0.16,1,0.3,1);animation:cardIn 0.5s ease both;display:flex;flex-direction:column;}
+.char-card:hover{background:var(--surface);z-index:2;transform:scale(1.025);}
+.char-card.hidden{display:none;}
+
+.card-portrait{width:100%;aspect-ratio:3/4;max-height:300px;position:relative;overflow:hidden;background:linear-gradient(160deg,#1e1018,#0e0810);}
+.portrait-img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform 0.55s cubic-bezier(0.16,1,0.3,1),filter 0.35s;filter:saturate(0.8) contrast(1.08);}
+.char-card:hover .portrait-img{transform:scale(1.08);filter:saturate(1.1) contrast(1.12);}
+.portrait-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 25%,rgba(22,15,20,0.55) 65%,var(--card-bg) 100%);transition:opacity 0.3s;}
+.char-card:hover .portrait-overlay{opacity:0.8;}
+
+.p-arcana{position:absolute;top:12px;left:12px;padding:3px 11px;background:rgba(10,6,8,0.78);backdrop-filter:blur(10px);border:1px solid rgba(212,168,75,0.35);font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold2);}
+.p-route{position:absolute;top:12px;right:12px;padding:3px 10px;border:1px solid;font-size:9px;letter-spacing:0.18em;text-transform:uppercase;background:rgba(10,6,8,0.72);backdrop-filter:blur(8px);}
+.rt-starter{border-color:rgba(212,168,75,0.5);color:var(--gold);}
+.rt-story{border-color:rgba(232,64,96,0.5);color:var(--red2);}
+.rt-event{border-color:rgba(100,180,240,0.5);color:#7ab8e8;}
+.rt-fem{border-color:rgba(200,120,220,0.5);color:#d484e8;}
+.rt-both{border-color:rgba(80,200,160,0.5);color:#50c8a0;}
+.rt-optional{border-color:rgba(140,140,140,0.35);color:var(--muted2);}
+
+/* portrait placeholder when image fails */
+.portrait-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:rgba(232,64,96,0.15);background:linear-gradient(160deg,#1e1018,#0e0810);position:absolute;inset:0;}
+
+.card-body{padding:18px 20px 22px;flex:1;display:flex;flex-direction:column;gap:10px;}
+.card-name{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--cream);line-height:1.1;}
+.card-role{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted2);}
+.card-hr{height:1px;background:var(--border);}
+.card-meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;}
+.meta-i{display:flex;flex-direction:column;gap:2px;}
+.meta-l{font-size:8px;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);}
+.meta-v{font-size:12px;color:var(--text);}
+.card-unlock{background:rgba(232,64,96,0.055);border-left:2px solid var(--red);padding:10px 12px;margin-top:auto;}
+.ul-tag{font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:var(--red2);margin-bottom:4px;}
+.ul-text{font-size:11px;line-height:1.65;color:var(--muted2);}
+.card-glow{position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--red),transparent);opacity:0;transition:opacity 0.35s;}
+.char-card:hover .card-glow{opacity:1;}
+
+/* MODAL */
+.modal-bd{position:fixed;inset:0;z-index:200;background:rgba(10,6,8,0.93);backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity 0.35s;}
+.modal-bd.open{opacity:1;pointer-events:all;}
+.modal{width:100%;max-width:840px;max-height:90vh;overflow-y:auto;background:var(--surface);border:1px solid var(--border2);position:relative;transform:translateY(28px) scale(0.97);transition:transform 0.38s cubic-bezier(0.16,1,0.3,1);display:grid;grid-template-columns:300px 1fr;}
+.modal-bd.open .modal{transform:translateY(0) scale(1);}
+.modal-portrait-wrap{position:relative;overflow:hidden;background:var(--card-bg);min-height:420px;}
+.modal-img{width:100%;height:100%;object-fit:cover;object-position:top center;filter:saturate(0.88) contrast(1.06);}
+.modal-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,6,8,0.15),rgba(10,6,8,0.65));}
+.modal-img-placeholder{width:100%;height:100%;min-height:420px;display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:6rem;font-weight:900;color:rgba(232,64,96,0.12);}
+.modal-name-wrap{position:absolute;bottom:0;left:0;right:0;padding:24px 28px;background:linear-gradient(to top,rgba(10,6,8,0.95),transparent);}
+.modal-mname{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--cream);line-height:1.1;text-shadow:0 2px 12px rgba(0,0,0,0.9);}
+.modal-mrole{font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--red2);margin-top:5px;text-shadow:0 1px 8px rgba(0,0,0,0.8);}
+.modal-close{position:absolute;top:14px;right:14px;z-index:5;width:34px;height:34px;background:rgba(10,6,8,0.82);border:1px solid var(--border2);color:var(--muted2);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all 0.22s;backdrop-filter:blur(6px);}
+.modal-close:hover{border-color:var(--red);color:var(--red2);}
+.modal-content{padding:32px;display:flex;flex-direction:column;gap:22px;overflow-y:auto;}
+.modal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;}
+.mi{display:flex;flex-direction:column;gap:4px;}
+.mi-l{font-size:9px;letter-spacing:0.26em;text-transform:uppercase;color:var(--muted);}
+.mi-v{font-size:14px;color:var(--text);}
+.modal-hr{height:1px;background:var(--border);}
+.modal-sl{font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--red2);margin-bottom:10px;}
+.modal-desc{font-size:13px;line-height:1.88;color:var(--muted2);}
+.modal-unlock-box{background:var(--card-bg);border:1px solid var(--border);border-left:3px solid var(--red);padding:16px 18px;}
+.modal-unlock-box p{font-size:13px;line-height:1.8;color:var(--text);}
+.skills{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;}
+.skill{padding:4px 13px;font-size:10px;letter-spacing:0.1em;border:1px solid var(--border2);color:var(--muted2);transition:all 0.2s;}
+.skill:hover{border-color:var(--red2);color:var(--cream);}
+
+/* ABOUT */
+.about-section{padding:80px 64px;}
+.about-hero{max-width:720px;margin-bottom:64px;}
+.about-hero h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.4rem);font-weight:700;color:var(--cream);line-height:1.1;margin-bottom:20px;}
+.about-hero h2 em{font-style:italic;color:var(--red2);}
+.about-hero p{font-size:15px;line-height:1.9;color:var(--muted2);}
+.about-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2px;border:1px solid var(--border);background:var(--border);}
+.about-card{background:var(--card-bg);padding:32px;border-top:2px solid transparent;transition:border-color 0.3s,background 0.25s;}
+.about-card:hover{border-top-color:var(--red);background:var(--surface);}
+.about-icon{font-size:1.8rem;margin-bottom:18px;}
+.about-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:10px;}
+.about-card p{font-size:13px;line-height:1.82;color:var(--muted2);}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:28px 64px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--muted2);}
+.footer-note{font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);}
+
+/* ANIMS */
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes heroIn{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:rgba(232,64,96,0.3);}
+::-webkit-scrollbar-thumb:hover{background:var(--red);}
+
+@media(max-width:900px){
+  .hero-nav,.hero-bottom,.sec-header,.search-row,.about-section,footer{padding-left:20px;padding-right:20px;}
+  .hero-stats{display:none;}.char-grid{margin:0 20px;}
+  .modal{grid-template-columns:1fr;}.modal-portrait-wrap{min-height:260px;max-height:280px;}
+  .sec-header{flex-direction:column;align-items:flex-start;padding-top:48px;}
+  .hero-title{font-size:clamp(3rem,14vw,6rem);}
+}
+@media(max-width:600px){
+  .modal-grid{grid-template-columns:1fr;}.modal-content{padding:20px;}
+  .char-grid{grid-template-columns:1fr 1fr;margin:0 12px;}
+  .hero-cta{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-frame"></div>
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <nav class="hero-nav">
+    <div class="logo">
+      <span class="logo-sub">Shin Megami Tensei</span>
+      <span class="logo-main">P3P Archive</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-link active" onclick="showSec('chars',this)">Characters</button>
+      <button class="nav-link" onclick="showSec('about',this)">About</button>
+    </div>
+  </nav>
+
+  <div class="hero-center">
+    <div class="eyebrow">SEES Member Database</div>
+    <h1 class="hero-title">Persona<br><em>3</em><br>Portable</h1>
+    <p class="hero-sub">The Dark Hour — Complete Wiki</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('chars-section').scrollIntoView({behavior:'smooth'})">Explore Characters</button>
+      <button class="btn-ghost" onclick="showSec('about',document.querySelectorAll('.nav-link')[1])">About the Game</button>
+    </div>
+  </div>
+
+  <div class="hero-bottom">
+    <div class="hero-stats">
+      <div class="hstat"><span class="hstat-n">14</span><span class="hstat-l">Members</span></div>
+      <div class="hstat"><span class="hstat-n">2</span><span class="hstat-l">Routes</span></div>
+      <div class="hstat"><span class="hstat-n">12</span><span class="hstat-l">Full Moons</span></div>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  </div>
+</section>
+
+<!-- MAIN -->
+<main class="page-main" id="chars-section">
+
+  <div class="chars-section visible" id="chars-content">
+    <div class="sec-header">
+      <div class="sec-title-group">
+        <span class="sec-label">Specialized Extracurricular Execution Squad</span>
+        <h2 class="sec-title">All Characters</h2>
+      </div>
+      <div class="filter-group">
+        <button class="ftag on" onclick="setF('all',this)">All</button>
+        <button class="ftag" onclick="setF('starter',this)">Starter</button>
+        <button class="ftag" onclick="setF('story',this)">Story</button>
+        <button class="ftag" onclick="setF('event',this)">Event</button>
+        <button class="ftag" onclick="setF('fem',this)">FeMC Only</button>
+        <button class="ftag" onclick="setF('both',this)">Both Routes</button>
+        <button class="ftag" onclick="setF('optional',this)">Other</button>
+      </div>
+    </div>
+
+    <div class="search-row">
+      <div class="sw">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" id="search" placeholder="Search characters, arcana, persona…" oninput="liveSearch(this.value)">
+      </div>
+      <span class="rcount" id="rcount">14 characters</span>
+    </div>
+
+    <div class="char-grid" id="grid"></div>
+  </div>
+
+  <div class="about-section" id="about-content">
+    <div class="about-hero">
+      <h2>The <em>Midnight Hour</em> Awaits</h2>
+      <p>Persona 3 Portable is the definitive portable edition of one of the most beloved JRPGs ever made. Released for PlayStation Portable, it introduced an entirely new Female Protagonist route — giving players the chance to experience the Dark Hour through a fresh perspective with unique social links and story beats. The 2023 remaster brought this enhanced version to PC and modern consoles.</p>
+    </div>
+    <div class="about-cards">
+      <div class="about-card"><div class="about-icon">🌑</div><h3>The Dark Hour</h3><p>A hidden 25th hour occurring each midnight, invisible to ordinary people who transform into coffins. Only Persona-users remain conscious, while the monsters called Shadows roam freely through this twisted reality.</p></div>
+      <div class="about-card"><div class="about-icon">🗼</div><h3>Tartarus</h3><p>A massive tower manifesting every Dark Hour, formed from Gekkoukan High School itself. SEES must ascend through hundreds of procedurally generated floors, battling Shadows to uncover the mystery behind the Dark Hour.</p></div>
+      <div class="about-card"><div class="about-icon">🌕</div><h3>Full Moon Operations</h3><p>Each month, a powerful Shadow boss manifests during the Full Moon. These high-stakes fixed story events advance the narrative — all twelve must be cleared to reach the true ending of the game.</p></div>
+      <div class="about-card"><div class="about-icon">🎴</div><h3>Social Links</h3><p>The heart of Persona. Building bonds with characters representing Tarot Arcana strengthens your ability to create more powerful Personas through fusion. Maxing Social Links is crucial to unlocking the true ending.</p></div>
+      <div class="about-card"><div class="about-icon">⚔️</div><h3>Persona System</h3><p>Characters awaken to Personas — manifestations of their inner selves — by pointing an Evoker at their head. The Wild Card protagonist can hold multiple Personas simultaneously, switching freely in battle.</p></div>
+      <div class="about-card"><div class="about-icon">👤</div><h3>Two Routes</h3><p>P3P offers two protagonists. The Male route follows the original story. The Female route features unique Social Links, romance options with Shinjiro and Ryoji, and a different emotional tone throughout the journey.</p></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span class="footer-logo">P3P Archive</span>
+  <span class="footer-note">Persona 3 Portable © Atlus · Fan Reference · Not affiliated with Atlus</span>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-bd" id="modal" onclick="outsideClose(event)">
+  <div class="modal" id="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-portrait-wrap">
+      <img id="m-img" class="modal-img" src="" alt="" onerror="this.style.display='none';document.getElementById('m-ph').style.display='flex'">
+      <div id="m-ph" class="modal-img-placeholder" style="display:none">?</div>
+      <div class="modal-img-overlay"></div>
+      <div class="modal-name-wrap">
+        <div class="modal-mname" id="m-name"></div>
+        <div class="modal-mrole" id="m-role"></div>
+      </div>
+    </div>
+    <div class="modal-content">
+      <div class="modal-grid">
+        <div class="mi"><span class="mi-l">Arcana</span><span class="mi-v" id="m-arcana"></span></div>
+        <div class="mi"><span class="mi-l">Persona</span><span class="mi-v" id="m-persona"></span></div>
+        <div class="mi"><span class="mi-l">Birthday</span><span class="mi-v" id="m-bday"></span></div>
+        <div class="mi"><span class="mi-l">Weapon</span><span class="mi-v" id="m-weapon"></span></div>
+        <div class="mi"><span class="mi-l">Route</span><span class="mi-v" id="m-route"></span></div>
+        <div class="mi"><span class="mi-l">Voice Actor</span><span class="mi-v" id="m-va"></span></div>
+      </div>
+      <div class="modal-hr"></div>
+      <div><div class="modal-sl">Character Profile</div><p class="modal-desc" id="m-desc"></p></div>
+      <div><div class="modal-sl">How to Unlock</div><div class="modal-unlock-box"><p id="m-unlock"></p></div></div>
+      <div><div class="modal-sl">Notable Skills</div><div class="skills" id="m-skills"></div></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const CHARS = [
+  {
+    id:1,filter:'starter',rt:'starter',
+    name:'Male Protagonist',role:'Leader · Wild Card',
+    arcana:'Fool',persona:'Orpheus → Any Arcana',
+    bday:'April 7',weapon:'One-handed Swords',routeLabel:'Male Route',va:'Akira Ishida (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/d/d0/P3_male_protagonist_FES_artwork.png/revision/latest/scale-to-width-down/400?cb=20130502211544',
+    initial:'M',
+    desc:'The original protagonist of Persona 3. A transfer student at Gekkoukan High School who possesses the Wild Card — the rare ability to wield every Arcana. Silent and stoic, he bonds with SEES in a story defined by mortality, friendship, and fate. His connection to Death itself will define the game\'s climax and the ultimate sacrifice at its heart.',
+    unlock:'Automatically available from the very beginning of the game. Select the Male route at the title screen — no additional conditions or steps required. He is the original protagonist.',
+    skills:['Wild Card','All Arcana Fusion','Evoker Combat','Protagonist Bonuses']
+  },
+  {
+    id:2,filter:'fem',rt:'fem',
+    name:'Female Protagonist',role:'Leader · Wild Card',
+    arcana:'Fool',persona:'Orpheus Femina → Any Arcana',
+    bday:'April 7',weapon:'One-handed Swords',routeLabel:'Female Route Only',va:'Akiko Yajima (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/4/48/P3P_female_protagonist.png/revision/latest/scale-to-width-down/400?cb=20100118055432',
+    initial:'F',
+    desc:'The iconic protagonist introduced exclusively in Persona 3 Portable. She wields the same Wild Card ability but experiences a completely different emotional journey — her route features unique Social Links, romance options unavailable to the male route, and a distinct tone of warmth and resilience. Universally beloved by the community.',
+    unlock:'Select the Female route when prompted at the very beginning of the game. This unlocks her exclusive storyline including the Shinjiro Hierophant Social Link (romance) and Ryoji Death Social Link (romance), both unavailable on the male route.',
+    skills:['Wild Card','All Arcana Fusion','Exclusive Social Links','Shinjiro & Ryoji Romance']
+  },
+  {
+    id:3,filter:'starter',rt:'starter',
+    name:'Yukari Takeba',role:'Healer · Wind Mage',
+    arcana:'Lovers',persona:'Io → Isis',
+    bday:'March 21',weapon:'Bow & Arrow',routeLabel:'Both Routes',va:'Megumi Toyoguchi (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/9/9d/Yukari_Takeba.png/revision/latest/scale-to-width-down/400?cb=20080919163502',
+    initial:'YK',
+    desc:'A popular and athletic second-year at Gekkoukan who joined SEES to uncover the truth about her father\'s mysterious death. Cheerful and emotional on the surface, Yukari hides deep wounds and guilt. She is the team\'s primary healer, combining strong Wind offensive magic with vital recovery spells. Her growth arc throughout the game is among the most resonant.',
+    unlock:'Automatically joins the party at the very beginning of the game. She is the very first party member encountered — fighting alongside the protagonist from April on both Male and Female routes with no unlock conditions.',
+    skills:['Garula / Garudyne','Media / Mediarama','Recarm / Recarm','High Agility']
+  },
+  {
+    id:4,filter:'starter',rt:'starter',
+    name:'Junpei Iori',role:'Striker · Fire Mage',
+    arcana:'Magician',persona:'Hermes → Trismegistus',
+    bday:'December 27',weapon:'Two-handed Sword',routeLabel:'Both Routes',va:'Kōsuke Toriumi (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/f/fd/JunpeiIoriP3.png/revision/latest/scale-to-width-down/400?cb=20080919163605',
+    initial:'JP',
+    desc:'The protagonist\'s boisterous, good-natured best friend who hides insecurity beneath constant humor. Junpei desperately wants to prove himself as a Persona-user and often charges in without thinking. His arc is shaped by his relationship with Strega\'s Chidori, leading to one of Persona 3\'s most memorable and heartbreaking storylines.',
+    unlock:'Automatically joins the party from the very start of the game on both routes. No unlock conditions — he is alongside the protagonist from April\'s first Tartarus exploration.',
+    skills:['Agidyne / Maragidyne','Slash Attack','Brave Blade','High Strength']
+  },
+  {
+    id:5,filter:'story',rt:'story',
+    name:'Akihiko Sanada',role:'Brawler · Thunder Mage',
+    arcana:'Emperor',persona:'Polydeuces → Caesar',
+    bday:'September 22',weapon:'Gloves / Fists',routeLabel:'Both Routes',va:'Hikaru Midorikawa (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/6/6c/AkihikoSanadaP3.png/revision/latest/scale-to-width-down/400?cb=20080919163404',
+    initial:'AK',
+    desc:'A legendary third-year boxing star who co-founded SEES with Mitsuru. Driven by survivor\'s guilt over the death of his childhood friend Shinjiro, Akihiko is obsessively focused on becoming stronger. He struggles to express emotion and often appears cold — but beneath that lies fierce loyalty and grief that define his character arc.',
+    unlock:'Joins the party automatically via story progression in April after the initial Tartarus exploration and early story cutscenes. Simply play through the opening chapters and he will become a controllable party member with no special conditions.',
+    skills:['Ziodyne / Maziodyne','Survive Theurgy','Powerful Strikes','High Endurance']
+  },
+  {
+    id:6,filter:'story',rt:'story',
+    name:'Mitsuru Kirijo',role:'Commander · Ice Mage',
+    arcana:'Empress',persona:'Penthesilea → Artemisia',
+    bday:'May 8',weapon:'Rapier',routeLabel:'Both Routes',va:'Rie Tanaka (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/1/19/MitsuruKirijoP3.png/revision/latest/scale-to-width-down/400?cb=20080919163550',
+    initial:'MK',
+    desc:'The sophisticated, commanding leader of SEES and heiress to the Kirijo Group. She carries enormous guilt for her family\'s role in creating the Dark Hour. Originally just the mission operator in Persona 3, P3P upgraded her to a fully playable battle member. Her icy, precise combat style perfectly mirrors her guarded but deeply caring personality.',
+    unlock:'Joins as a fully controllable battle member — a P3P exclusive upgrade — through natural story progression in May. Simply advance through the narrative and she joins the active party roster automatically.',
+    skills:['Mabufudyne','Marin Karin (Charm)','Pierce Attacks','High Magic Stat']
+  },
+  {
+    id:7,filter:'story',rt:'story',
+    name:'Fuuka Yamagishi',role:'Navigator · Support',
+    arcana:'Priestess',persona:'Lucia → Juno',
+    bday:'October 9',weapon:'N/A (Navigator)',routeLabel:'Both Routes',va:'Mamiko Noto (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/4/47/FuukaYamagishiP3.png/revision/latest/scale-to-width-down/400?cb=20080919163516',
+    initial:'FK',
+    desc:'A shy and gentle student who takes over as SEES\'s navigator after Mitsuru moves to active combat. Her Persona has exceptional scanning and support abilities — she can analyze enemies, detect weaknesses, and boost the party remotely. Outside battle she is soft-spoken, deeply kind, and infamously terrible at cooking despite her best efforts.',
+    unlock:'Joins SEES automatically as the navigator following story events in June, after the Full Moon operation involving her rescue from Tartarus. Advance through the main narrative and she will appear naturally.',
+    skills:['Enemy Analysis','Scan Weaknesses','Party HP/SP Restore','Radar Support']
+  },
+  {
+    id:8,filter:'story',rt:'story',
+    name:'Ken Amada',role:'Avenger · Light Mage',
+    arcana:'Justice',persona:'Nemesis → Kala-Nemi',
+    bday:'September 27',weapon:'Spear / Extendable Rod',routeLabel:'Both Routes',va:'Megumi Ogata (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/3/37/KenAmadaP3.png/revision/latest/scale-to-width-down/400?cb=20080919163534',
+    initial:'KA',
+    desc:'An elementary-school-aged boy who joined SEES driven by a deeply personal vendetta. Far more mature than his age suggests, Ken conceals a dangerous single-mindedness beneath a polite, composed facade. His arc explores grief, justice, and what it truly means to move forward. He wields Light and Almighty magic with spear-based physical attacks.',
+    unlock:'Joins the party automatically through story progression in July, following events at the Moonlight Bridge and the introduction of the antagonist group Strega. Simply progress the main story.',
+    skills:['Hamaon / Mahama','Almighty Skills','Spear Attacks (Shock)','Mediarama']
+  },
+  {
+    id:9,filter:'story',rt:'story',
+    name:'Koromaru',role:'Shadow Hunter · Dark Mage',
+    arcana:'Strength',persona:'Cerberus',
+    bday:'Unknown',weapon:'Knife (in mouth)',routeLabel:'Both Routes',va:'N/A',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/f/f4/KoromaruP3.png/revision/latest/scale-to-width-down/400?cb=20080919163543',
+    initial:'KO',
+    desc:'A white Shiba Inu who belonged to a deceased shrine priest. Fiercely loyal to his late owner\'s memory, Koromaru is surprisingly capable in combat — he awakened to his Persona through sheer force of devotion. He wields Dark and Fire magic simultaneously, making him an unusual and powerful dual-element attacker with exceptional agility.',
+    unlock:'Joins the party automatically through story events in July, at the same time as Ken Amada, after SEES encounters him at the shrine near Gekkoukan. Both join simultaneously via story progression.',
+    skills:['Mudoon / Mamudo','Agidyne / Maragidyne','High Agility','Evade Slash']
+  },
+  {
+    id:10,filter:'event',rt:'event',
+    name:'Shinjiro Aragaki',role:'Former SEES · Berserker',
+    arcana:'Hierophant',persona:'Castor',
+    bday:'January 1',weapon:'Axe / Blunt Weapons',routeLabel:'Both (limited) · Romance on FeMC',va:'Kazuya Nakai (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/2/22/ShinjiroAragakiP3.png/revision/latest/scale-to-width-down/400?cb=20080919163619',
+    initial:'SK',
+    desc:'A former SEES member who left after a tragic accident caused by his Persona killed an innocent person. Rough and deeply antisocial on the surface, Shinjiro is extraordinarily compassionate and consumed by guilt. In the Female route he becomes a full Social Link with a romance path. He is a devastating physical powerhouse — the hardest-hitting member in the game.',
+    unlock:'BOTH ROUTES: Rejoins party in September via story events but is temporary due to plot circumstances. FEMALE ROUTE ONLY: His Hierophant Social Link opens in September — maximize it before the October 4th deadline for the full romance arc. He is only available for a limited window, so prioritize his link immediately when it opens.',
+    skills:['Gigantic Fist','Powerful Blunt Attacks','High Strength Stat','Late Game Monster']
+  },
+  {
+    id:11,filter:'story',rt:'story',
+    name:'Aigis',role:'Android Warrior · Protector',
+    arcana:'Chariot → Aeon',persona:'Palladion → Athena',
+    bday:'August 8 (activation)',weapon:'Built-in Firearms & Blades',routeLabel:'Both Routes',va:'Maaya Sakamoto (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/7/7c/AigisP3P.png/revision/latest/scale-to-width-down/400?cb=20100403191451',
+    initial:'AI',
+    desc:'An android created by the Kirijo Group to combat Shadows. Programmed above all else to protect the protagonist — a directive rooted in a suppressed memory from a fateful night ten years prior. Aigis gradually develops genuine emotions and self-awareness throughout the story, becoming one of the most beloved characters in the entire Persona series.',
+    unlock:'Joins the party automatically through story progression in August, following events at Yakushima. Her exclusive Social Link (the Aeon Arcana, unique to P3P) opens on both routes after she joins.',
+    skills:['Orgia Mode (berserk boost)','Firearms / Almighty Bullets','Slash Skills','Balanced High Stats']
+  },
+  {
+    id:12,filter:'both',rt:'both',
+    name:'Ryoji Mochizuki',role:'Transfer Student · Harbinger',
+    arcana:'Death',persona:'Thanatos',
+    bday:'November 8',weapon:'N/A (Non-playable)',routeLabel:'Both Routes · Social Link on FeMC',va:'Akira Ishida (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/b/b5/Ryoji_P3.png/revision/latest/scale-to-width-down/400?cb=20090104202921',
+    initial:'RY',
+    desc:'A charismatic, cheerful transfer student who arrives in autumn and immediately captivates the school. Ryoji harbors a devastating secret that is entirely central to the game\'s climax and the true nature of the protagonist. He shares a deep, mysterious bond with the main character. In the Female route he is a romance Social Link, and his tragic story is unforgettable.',
+    unlock:'Appears automatically through story progression in November as a new transfer student — no action required. FEMALE ROUTE ONLY: His Death Arcana Social Link opens via story-triggered conversations at Gekkoukan. Build the relationship through available dialogue options before the story deadline.',
+    skills:['Non-playable Character','Story Role Only','FeMC Romance Social Link','Death Arcana (FeMC)']
+  },
+  {
+    id:13,filter:'optional',rt:'optional',
+    name:'Metis',role:'Android · Aigis\'s Sister',
+    arcana:'Hanged Man',persona:'Psyche',
+    bday:'Unknown',weapon:'Arm Blades',routeLabel:'Not in P3P (FES Only)',va:'Nana Mizuki (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/7/78/MetisP3FES.png/revision/latest/scale-to-width-down/400?cb=20100403192021',
+    initial:'ME',
+    desc:'Metis is NOT a playable character in Persona 3 Portable. She exists exclusively in Persona 3 FES\'s "The Answer" epilogue mode (Episode Aigis). When Atlus ported the game to PSP as P3P, The Answer epilogue was removed entirely, meaning Metis does not appear in this version at all.',
+    unlock:'Metis is UNAVAILABLE in Persona 3 Portable. She only appears in Persona 3 FES on PS2/PS3 via the "The Answer" epilogue. To access her content you must play Persona 3 FES — she was not included when the game was remastered in 2023 either.',
+    skills:['Arm Blade Attacks (FES)','Wind Magic (FES)','Not in P3P','FES Exclusive Only']
+  },
+  {
+    id:14,filter:'story',rt:'story',
+    name:'Takeharu Kirijo',role:'Kirijo Group Chairman',
+    arcana:'N/A',persona:'N/A',
+    bday:'Unknown',weapon:'N/A',routeLabel:'Both Routes (NPC)',va:'Unshou Ishizuka (JP)',
+    img:'https://static.wikia.nocookie.net/megamitensei/images/e/e5/TakeharuKirijoP3.png/revision/latest/scale-to-width-down/400?cb=20080919163628',
+    initial:'TK',
+    desc:'Mitsuru\'s father and the chairman of the Kirijo Group. Takeharu plays a pivotal supporting role in the story\'s progression and SEES\'s broader mission. Not a playable party member, but central to understanding the game\'s mythology — specifically the Kirijo Group\'s experiments that created the Dark Hour in the first place.',
+    unlock:'Story NPC — appears automatically through plot progression at key story beats. Not playable in any version of Persona 3 Portable.',
+    skills:['Story Character Only','Non-playable','Key Narrative Role']
+  }
+];
+
+let currentFilter = 'all';
+
+function routeClass(rt) {
+  return {starter:'rt-starter',story:'rt-story',event:'rt-event',fem:'rt-fem',both:'rt-both',optional:'rt-optional'}[rt] || 'rt-story';
+}
+function routeLabel(rt) {
+  return {starter:'Starter',story:'Story',event:'Event',fem:'FeMC Only',both:'Both',optional:'Other'}[rt] || rt;
+}
+
+function buildGrid() {
+  const g = document.getElementById('grid');
+  g.innerHTML = '';
+  CHARS.forEach((c, i) => {
+    const show = currentFilter === 'all' || c.filter === currentFilter;
+    const div = document.createElement('div');
+    div.className = 'char-card' + (show ? '' : ' hidden');
+    div.style.animationDelay = (i * 0.045) + 's';
+    div.onclick = () => openModal(c);
+    const shortUnlock = c.unlock.length > 90 ? c.unlock.substring(0, 87) + '…' : c.unlock;
+    div.innerHTML = `
+      <div class="card-portrait">
+        <div class="portrait-placeholder">${c.initial}</div>
+        <img class="portrait-img" src="${c.img}" alt="${c.name}"
+          onload="this.style.opacity=1;this.previousElementSibling.style.display='none'"
+          onerror="this.style.display='none';this.previousElementSibling.style.display='flex'"
+          style="opacity:0;transition:opacity 0.5s;">
+        <div class="portrait-overlay"></div>
+        <div class="p-arcana">${c.arcana}</div>
+        <div class="p-route ${routeClass(c.filter)}">${routeLabel(c.filter)}</div>
+      </div>
+      <div class="card-body">
+        <div><div class="card-name">${c.name}</div><div class="card-role">${c.role}</div></div>
+        <div class="card-hr"></div>
+        <div class="card-meta">
+          <div class="meta-i"><span class="meta-l">Persona</span><span class="meta-v">${c.persona.split('→')[0].trim()}</span></div>
+          <div class="meta-i"><span class="meta-l">Weapon</span><span class="meta-v">${c.weapon}</span></div>
+          <div class="meta-i"><span class="meta-l">Birthday</span><span class="meta-v">${c.bday}</span></div>
+          <div class="meta-i"><span class="meta-l">Route</span><span class="meta-v">${c.routeLabel}</span></div>
+        </div>
+        <div class="card-unlock">
+          <div class="ul-tag">Unlock</div>
+          <div class="ul-text">${shortUnlock}</div>
+        </div>
+      </div>
+      <div class="card-glow"></div>`;
+    g.appendChild(div);
+  });
+  updateCount();
+}
+
+function setF(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.ftag').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.char-card').forEach((card, i) => {
+    const show = f === 'all' || CHARS[i].filter === f;
+    card.classList.toggle('hidden', !show);
+  });
+  updateCount();
+}
+
+function liveSearch(v) {
+  v = v.toLowerCase();
+  document.querySelectorAll('.char-card').forEach((card, i) => {
+    const c = CHARS[i];
+    const match = !v || c.name.toLowerCase().includes(v) || c.arcana.toLowerCase().includes(v) || c.persona.toLowerCase().includes(v) || c.role.toLowerCase().includes(v);
+    const filterOk = currentFilter === 'all' || c.filter === currentFilter;
+    card.classList.toggle('hidden', !(match && filterOk));
+  });
+  updateCount();
+}
+
+function updateCount() {
+  const n = document.querySelectorAll('.char-card:not(.hidden)').length;
+  document.getElementById('rcount').textContent = n + ' character' + (n !== 1 ? 's' : '');
+}
+
+function openModal(c) {
+  const img = document.getElementById('m-img');
+  const ph = document.getElementById('m-ph');
+  img.style.display = 'block'; ph.style.display = 'none';
+  img.src = c.img; img.alt = c.name;
+  ph.textContent = c.initial;
+  document.getElementById('m-name').textContent = c.name;
+  document.getElementById('m-role').textContent = c.role;
+  document.getElementById('m-arcana').textContent = c.arcana;
+  document.getElementById('m-persona').textContent = c.persona;
+  document.getElementById('m-bday').textContent = c.bday;
+  document.getElementById('m-weapon').textContent = c.weapon;
+  document.getElementById('m-route').textContent = c.routeLabel;
+  document.getElementById('m-va').textContent = c.va;
+  document.getElementById('m-desc').textContent = c.desc;
+  document.getElementById('m-unlock').textContent = c.unlock;
+  document.getElementById('m-skills').innerHTML = c.skills.map(s => `<span class="skill">${s}</span>`).join('');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function outsideClose(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+function showSec(id, btn) {
+  document.getElementById('chars-content').classList.toggle('visible', id === 'chars');
+  document.getElementById('about-content').classList.toggle('visible', id === 'about');
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.querySelector('.page-main').scrollIntoView({ behavior: 'smooth' });
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+buildGrid();
+</script>
+</body>
+</html>
