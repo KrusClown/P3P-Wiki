@@ -7,13 +7,14 @@ This project showcases the members of SEES (Specialized Extracurricular Executio
 -CSS3
 -JavaScript (Vanilla JS)
 
-# Project Structure
-persona3-wiki
+## Project Structure
+
+```text
+persona3-wiki/
 │
 ├── index.html
-│
-├── css
-│ └── styles.css
-│
-└── js
-  └── script.js
+├── css/
+│   └── styles.css
+└── js/
+    └── script.js
+
