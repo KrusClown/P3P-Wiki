@@ -11,11 +11,22 @@ This project showcases the members of SEES (Specialized Extracurricular Executio
 ## Project Structure
 
 ```text
-persona3-wiki/
+persona3-wiki
 │
 ├── index.html
-├── css/
-│   └── styles.css
-└── js/
-    └── script.js
+├── README.md
+│
+├── assets
+│   ├── css
+│   │   └── styles.css
+│   │
+│   ├── js
+│   │   └── script.js
+│   │
+│   └── images
+│       └── characters
+│           └── .gitkeep
+│
+└── data
+    └── .gitkeep
 
