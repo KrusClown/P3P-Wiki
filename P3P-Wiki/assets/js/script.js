@@ -272,3 +272,25 @@ function showSec(id, btn) {
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 buildGrid();
+
+// Search highlight
+function liveSearch(v) {
+  v = v.toLowerCase();
+  document.querySelectorAll('.char-card').forEach((card, i) => {
+    const c = CHARS[i];
+    const match = !v || c.name.toLowerCase().includes(v) || c.arcana.toLowerCase().includes(v) || c.persona.toLowerCase().includes(v) || c.role.toLowerCase().includes(v);
+    const filterOk = currentFilter === 'all' || c.filter === currentFilter;
+    card.classList.toggle('hidden', !(match && filterOk));
+
+    // highlight matching text in name
+    const nameEl = card.querySelector('.card-name');
+    if (!nameEl) return;
+    if (v && c.name.toLowerCase().includes(v)) {
+      const regex = new RegExp(`(${v})`, 'gi');
+      nameEl.innerHTML = c.name.replace(regex, '<span class="highlight">$1</span>');
+    } else {
+      nameEl.textContent = c.name;
+    }
+  });
+  updateCount();
+}

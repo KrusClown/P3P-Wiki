@@ -8,12 +8,55 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/styles.css">
 </head>
+<script>
+(function () {
+  const canvas = document.getElementById('aurora-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const bands = [
+    { y: 0.35, color1: '232,40,70',  color2: '180,20,50',  speed: 0.00018, amp: 0.09, phase: 0 },
+    { y: 0.55, color1: '212,140,40', color2: '180,100,20', speed: 0.00013, amp: 0.07, phase: 1.2 },
+    { y: 0.70, color1: '160,20,80',  color2: '100,10,60',  speed: 0.00021, amp: 0.06, phase: 2.5 },
+    { y: 0.25, color1: '100,30,160', color2: '60,10,120',  speed: 0.00015, amp: 0.08, phase: 0.7 },
+  ];
+
+  let t = 0;
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const W = canvas.width, H = canvas.height;
+
+    bands.forEach(b => {
+      const centerY = (b.y + Math.sin(t * b.speed * 1000 + b.phase) * b.amp) * H;
+      const grad = ctx.createRadialGradient(W * 0.5, centerY, 0, W * 0.5, centerY, W * 0.65);
+      grad.addColorStop(0,   `rgba(${b.color1}, 0.22)`);
+      grad.addColorStop(0.5, `rgba(${b.color2}, 0.10)`);
+      grad.addColorStop(1,   `rgba(${b.color2}, 0)`);
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, W, H);
+    });
+
+    t++;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+</script>
 <body>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <canvas id="aurora-canvas"></canvas>
   <div class="hero-frame"></div>
+  <div class="vignette-pulse"></div>
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <div class="orb orb3"></div>

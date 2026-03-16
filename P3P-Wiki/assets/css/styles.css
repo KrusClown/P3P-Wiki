@@ -317,3 +317,45 @@ body.clicking #cursor-ring {
   height: 64px;
   opacity: 0;
 }
+/* ── SEARCH HIGHLIGHT ── */
+.highlight {
+  color: var(--red2);
+  background: rgba(232, 64, 96, 0.15);
+  border-radius: 2px;
+  padding: 0 1px;
+  font-weight: 500;
+}
+/* ── AURORA ── */
+#aurora-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+/* ── VIGNETTE PULSE ── */
+.vignette-pulse {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  border-radius: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(10, 4, 6, 0.45) 80%,
+    rgba(10, 4, 6, 0.85) 100%
+  );
+  animation: vignette-beat 3.8s ease-in-out infinite;
+}
+
+@keyframes vignette-beat {
+  0%   { opacity: 0.6; }
+  40%  { opacity: 1;   }
+  55%  { opacity: 0.7; }
+  70%  { opacity: 1;   }
+  100% { opacity: 0.6; }
+}
