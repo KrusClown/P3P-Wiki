@@ -258,3 +258,62 @@ footer{border-top:1px solid var(--border);padding:28px 64px;display:flex;align-i
   20% { opacity: 0.9;  transform: skewX(0.5deg); }
   21% { opacity: 1;    transform: skewX(0); }
 }
+/* ── CUSTOM CURSOR ── */
+* { cursor: none !important; }
+
+#cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--red2);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, background 0.3s ease, width 0.3s ease, height 0.3s ease;
+  box-shadow: 0 0 8px var(--red2), 0 0 20px rgba(232,64,96,0.6);
+  mix-blend-mode: screen;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(232, 64, 96, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.35s ease, height 0.35s ease, border-color 0.35s ease, opacity 0.35s ease;
+}
+
+#cursor-trail-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99997;
+}
+
+/* Hover states — grow ring, shrink dot */
+body.hovering #cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold2);
+  box-shadow: 0 0 12px var(--gold2), 0 0 28px rgba(212,168,75,0.7);
+}
+body.hovering #cursor-ring {
+  width: 52px;
+  height: 52px;
+  border-color: rgba(212, 168, 75, 0.6);
+}
+
+/* Click burst */
+body.clicking #cursor-dot {
+  width: 4px;
+  height: 4px;
+}
+body.clicking #cursor-ring {
+  width: 64px;
+  height: 64px;
+  opacity: 0;
+}
