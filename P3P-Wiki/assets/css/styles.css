@@ -259,7 +259,7 @@ footer{border-top:1px solid var(--border);padding:28px 64px;display:flex;align-i
   21% { opacity: 1;    transform: skewX(0); }
 }
 /* ── CUSTOM CURSOR ── */
-* { cursor: none !important; }
+* { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M4 2 L4 16 L7.5 12.5 L10.5 18 L12 17.2 L9 11.5 L13.5 11.5 Z' fill='%23c0192c' stroke='%23300008' stroke-width='0.8'/%3E%3C/svg%3E") 4 2, auto !important; }
 
 #cursor-dot {
   position: fixed;

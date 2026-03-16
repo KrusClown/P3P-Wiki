@@ -137,5 +137,83 @@
 
 <script src="assets/js/script.js"></script>
 
+<!-- CUSTOM CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+<canvas id="cursor-trail-canvas"></canvas>
+
+<script>
+(function() {
+  const dot    = document.getElementById('cursor-dot');
+  const ring   = document.getElementById('cursor-ring');
+  const canvas = document.getElementById('cursor-trail-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let mouseX = -100, mouseY = -100;
+  let ringX  = -100, ringY  = -100;
+  let trail  = [];
+
+  /* resize canvas to window */
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  /* track mouse */
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    trail.push({ x: mouseX, y: mouseY, age: 0 });
+    if (trail.length > 28) trail.shift();
+  });
+
+  /* hover state on interactive elements */
+  const hoverEls = 'a, button, .char-card, .ftag, .nav-link, .modal-close, .btn-primary, .btn-ghost, #search';
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest(hoverEls)) document.body.classList.add('hovering');
+  });
+  document.addEventListener('mouseout', e => {
+    if (e.target.closest(hoverEls)) document.body.classList.remove('hovering');
+  });
+
+  /* click burst */
+  document.addEventListener('mousedown', () => document.body.classList.add('clicking'));
+  document.addEventListener('mouseup',   () => document.body.classList.remove('clicking'));
+
+  /* animation loop */
+  function loop() {
+    /* move dot instantly */
+    dot.style.left = mouseX + 'px';
+    dot.style.top  = mouseY + 'px';
+
+    /* lag ring behind for smooth follow */
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    ring.style.left = ringX + 'px';
+    ring.style.top  = ringY + 'px';
+
+    /* draw trail */
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    trail.forEach((p, i) => {
+      p.age++;
+      const progress = i / trail.length;
+      const alpha    = progress * 0.55;
+      const radius   = progress * 4.5;
+      const hue      = progress > 0.6 ? '212,168,75' : '232,64,96';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${hue}, ${alpha})`;
+      ctx.fill();
+    });
+    trail = trail.filter(p => p.age < 35);
+
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
+</script>
+
 </body>
 </html>
