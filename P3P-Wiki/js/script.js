@@ -294,3 +294,15 @@ function liveSearch(v) {
   });
   updateCount();
 }
+// Single rAF loop example
+const tasks = [];
+function addTask(fn) { tasks.push(fn); }
+function masterLoop() {
+  tasks.forEach(fn => fn());
+  requestAnimationFrame(masterLoop);
+}
+requestAnimationFrame(masterLoop);
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) pauseAllAnimations();
+  else resumeAllAnimations();
+});
