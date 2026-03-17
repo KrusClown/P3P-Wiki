@@ -28,7 +28,8 @@ P3P-Wiki/
 │
 ├── js/
 │   ├── script.js
-│   └── effects.js
+│   ├── effects.js
+│   └── optimizations.js
 │
 ├── assets/
 │   └── images/
