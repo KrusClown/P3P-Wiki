@@ -6,55 +6,14 @@
 <title>Persona 3 Portable — SEES Archive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@200;300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="css/styles.css">
 </head>
-<script>
-(function () {
-  const canvas = document.getElementById('aurora-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width  = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  const bands = [
-    { y: 0.35, color1: '232,40,70',  color2: '180,20,50',  speed: 0.00018, amp: 0.09, phase: 0 },
-    { y: 0.55, color1: '212,140,40', color2: '180,100,20', speed: 0.00013, amp: 0.07, phase: 1.2 },
-    { y: 0.70, color1: '160,20,80',  color2: '100,10,60',  speed: 0.00021, amp: 0.06, phase: 2.5 },
-    { y: 0.25, color1: '100,30,160', color2: '60,10,120',  speed: 0.00015, amp: 0.08, phase: 0.7 },
-  ];
-
-  let t = 0;
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const W = canvas.width, H = canvas.height;
-
-    bands.forEach(b => {
-      const centerY = (b.y + Math.sin(t * b.speed * 1000 + b.phase) * b.amp) * H;
-      const grad = ctx.createRadialGradient(W * 0.5, centerY, 0, W * 0.5, centerY, W * 0.65);
-      grad.addColorStop(0,   `rgba(${b.color1}, 0.22)`);
-      grad.addColorStop(0.5, `rgba(${b.color2}, 0.10)`);
-      grad.addColorStop(1,   `rgba(${b.color2}, 0)`);
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, W, H);
-    });
-
-    t++;
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
-</script>
 <body>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
-  <canvas id="aurora-canvas"></canvas>
+  <canvas id="glsl-canvas"></canvas>
   <div class="hero-frame"></div>
   <div class="vignette-pulse"></div>
   <div class="orb orb1"></div>
@@ -75,10 +34,10 @@
   <div class="hero-center">
     <div class="eyebrow">SEES Member Database</div>
     <h1 class="hero-title" style="animation: glitch-flicker 3.2s steps(1) 0.5s both;">
-  <span class="glitch-wrap" data-text="Persona">Persona</span><br>
-  <em><span class="glitch-wrap" data-text="3">3</span></em><br>
-  <span class="glitch-wrap" data-text="Portable">Portable</span>
-</h1>
+      <span class="glitch-wrap" data-text="Persona">Persona</span><br>
+      <em><span class="glitch-wrap" data-text="3">3</span></em><br>
+      <span class="glitch-wrap" data-text="Portable">Portable</span>
+    </h1>
     <p class="hero-sub">The Dark Hour — Complete Wiki</p>
     <div class="hero-cta">
       <button class="btn-primary" onclick="document.getElementById('chars-section').scrollIntoView({behavior:'smooth'})">Explore Characters</button>
@@ -88,9 +47,9 @@
 
   <div class="hero-bottom">
     <div class="hero-stats">
-      <div class="hstat"><span class="hstat-n">14</span><span class="hstat-l">Members</span></div>
-      <div class="hstat"><span class="hstat-n">2</span><span class="hstat-l">Routes</span></div>
-      <div class="hstat"><span class="hstat-n">12</span><span class="hstat-l">Full Moons</span></div>
+      <div class="hstat"><span class="hstat-n">0</span><span class="hstat-l">Members</span></div>
+      <div class="hstat"><span class="hstat-n">0</span><span class="hstat-l">Routes</span></div>
+      <div class="hstat"><span class="hstat-n">0</span><span class="hstat-l">Full Moons</span></div>
     </div>
     <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
   </div>
@@ -118,7 +77,9 @@
 
     <div class="search-row">
       <div class="sw">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
         <input type="text" id="search" placeholder="Search characters, arcana, persona…" oninput="liveSearch(this.value)">
       </div>
       <span class="rcount" id="rcount">14 characters</span>
@@ -178,85 +139,37 @@
   </div>
 </div>
 
-<script src="assets/js/script.js"></script>
+<!-- IDLE DARK HOUR -->
+<div id="idle-overlay">
+  <div id="idle-content">
+    <div id="idle-eyebrow">— Dark Hour Initiating —</div>
+    <div id="idle-clock">
+      <svg viewBox="0 0 200 200" id="clock-svg">
+        <circle cx="100" cy="100" r="90" fill="none" stroke="rgba(232,64,96,0.3)" stroke-width="1"/>
+        <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(232,64,96,0.1)" stroke-width="0.5"/>
+        <g id="hour-marks"></g>
+        <line id="hour-hand"   x1="100" y1="100" x2="100" y2="38" stroke="var(--cream)" stroke-width="2.5" stroke-linecap="round"/>
+        <line id="minute-hand" x1="100" y1="100" x2="100" y2="22" stroke="var(--cream)" stroke-width="1.5" stroke-linecap="round"/>
+        <line id="second-hand" x1="100" y1="100" x2="100" y2="18" stroke="var(--red2)"  stroke-width="1"   stroke-linecap="round"/>
+        <circle cx="100" cy="100" r="4" fill="var(--red2)"/>
+        <circle cx="100" cy="100" r="2" fill="var(--cream)"/>
+      </svg>
+    </div>
+    <div id="idle-time">00:00:00</div>
+    <div id="idle-message">The Dark Hour has begun.<br>All souls have returned to their coffins.</div>
+    <button id="idle-dismiss">— Return —</button>
+  </div>
+</div>
 
 <!-- CUSTOM CURSOR -->
 <div id="cursor-dot"></div>
 <div id="cursor-ring"></div>
 <canvas id="cursor-trail-canvas"></canvas>
 
-<script>
-(function() {
-  const dot    = document.getElementById('cursor-dot');
-  const ring   = document.getElementById('cursor-ring');
-  const canvas = document.getElementById('cursor-trail-canvas');
-  const ctx    = canvas.getContext('2d');
-
-  let mouseX = -100, mouseY = -100;
-  let ringX  = -100, ringY  = -100;
-  let trail  = [];
-
-  /* resize canvas to window */
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  /* track mouse */
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    trail.push({ x: mouseX, y: mouseY, age: 0 });
-    if (trail.length > 28) trail.shift();
-  });
-
-  /* hover state on interactive elements */
-  const hoverEls = 'a, button, .char-card, .ftag, .nav-link, .modal-close, .btn-primary, .btn-ghost, #search';
-  document.addEventListener('mouseover', e => {
-    if (e.target.closest(hoverEls)) document.body.classList.add('hovering');
-  });
-  document.addEventListener('mouseout', e => {
-    if (e.target.closest(hoverEls)) document.body.classList.remove('hovering');
-  });
-
-  /* click burst */
-  document.addEventListener('mousedown', () => document.body.classList.add('clicking'));
-  document.addEventListener('mouseup',   () => document.body.classList.remove('clicking'));
-
-  /* animation loop */
-  function loop() {
-    /* move dot instantly */
-    dot.style.left = mouseX + 'px';
-    dot.style.top  = mouseY + 'px';
-
-    /* lag ring behind for smooth follow */
-    ringX += (mouseX - ringX) * 0.12;
-    ringY += (mouseY - ringY) * 0.12;
-    ring.style.left = ringX + 'px';
-    ring.style.top  = ringY + 'px';
-
-    /* draw trail */
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    trail.forEach((p, i) => {
-      p.age++;
-      const progress = i / trail.length;
-      const alpha    = progress * 0.55;
-      const radius   = progress * 4.5;
-      const hue      = progress > 0.6 ? '212,168,75' : '232,64,96';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${hue}, ${alpha})`;
-      ctx.fill();
-    });
-    trail = trail.filter(p => p.age < 35);
-
-    requestAnimationFrame(loop);
-  }
-  loop();
-})();
-</script>
+<!-- SCRIPTS -->
+<script src="js/script.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/optimizations.js"></script>
 
 </body>
 </html>
