@@ -311,3 +311,225 @@ function animateCounters() {
 /* ── INIT ── */
 buildGrid();
 animateCounters();
+
+/* ═══════════════════════════════════════════
+   CLASS GUIDE DATA + LOGIC
+═══════════════════════════════════════════ */
+
+const CLASS_DATA = {
+  april: {
+    name: 'April', sub: 'School begins — first classes',
+    entries: [
+      { date: 'Apr 9',  type: 'class', subject: 'Modern Japanese',    question: 'What type of literary expression is used in this poem?', answer: 'Personification', reward: '+Academics' },
+      { date: 'Apr 11', type: 'class', subject: 'Mathematics',        question: 'What is the name for a number only divisible by 1 and itself?', answer: 'Prime number', reward: '+Academics' },
+      { date: 'Apr 14', type: 'class', subject: 'Classical Japanese', question: 'What does the word "aware" mean in classical Japanese?', answer: 'Pathos of things', reward: '+Academics' },
+      { date: 'Apr 18', type: 'class', subject: 'Modern Japanese',    question: 'Who wrote "I Am a Cat"?', answer: 'Natsume Soseki', reward: '+Academics' },
+      { date: 'Apr 23', type: 'class', subject: 'Health',             question: 'What is the name of the muscle that controls the pupil?', answer: 'Sphincter pupillae', reward: '+Academics' },
+      { date: 'Apr 25', type: 'class', subject: 'Mathematics',        question: 'If a triangle has angles 90° and 45°, what is the third?', answer: '45 degrees', reward: '+Academics' },
+      { date: 'Apr 27', type: 'free',  subject: 'No class',           question: 'Free afternoon — no Q&A', answer: 'Study at dorm or Wakatsu', reward: 'Free Time' },
+    ]
+  },
+  may: {
+    name: 'May', sub: 'First midterm exam period',
+    entries: [
+      { date: 'May 2',  type: 'class', subject: 'Classical Japanese', question: 'What period is "The Tale of Genji" from?', answer: 'Heian period', reward: '+Academics' },
+      { date: 'May 7',  type: 'class', subject: 'Modern Japanese',    question: 'What is the literary term for giving human traits to objects?', answer: 'Personification', reward: '+Academics' },
+      { date: 'May 10', type: 'class', subject: 'Health',             question: 'What organ produces insulin?', answer: 'Pancreas', reward: '+Academics' },
+      { date: 'May 13', type: 'class', subject: 'Mathematics',        question: 'What do you call the longest side of a right triangle?', answer: 'Hypotenuse', reward: '+Academics' },
+      { date: 'May 19', type: 'test',  subject: '📝 MIDTERM EXAMS', question: '', answer: '', reward: 'Top Score Bonus', isExam: true,
+        examQA: [
+          { q: 'What period is The Tale of Genji from?',           a: 'Heian period' },
+          { q: 'What is "aware" in classical Japanese?',           a: 'Pathos of things' },
+          { q: 'What muscle controls the pupil?',                  a: 'Sphincter pupillae' },
+          { q: 'What is a number divisible only by 1 and itself?', a: 'Prime number' },
+          { q: 'What is the longest side of a right triangle?',    a: 'Hypotenuse' },
+        ]
+      },
+      { date: 'May 26', type: 'free',  subject: 'Post-exam free day', question: 'Relax or Social Link', answer: 'Great day for Social Links', reward: 'Free Time' },
+    ]
+  },
+  june: {
+    name: 'June', sub: 'Rainy season — Fuuka joins SEES',
+    entries: [
+      { date: 'Jun 4',  type: 'class', subject: 'Mathematics',        question: 'What is the formula for the area of a circle?', answer: 'πr²', reward: '+Academics' },
+      { date: 'Jun 8',  type: 'class', subject: 'Modern Japanese',    question: 'Who is the author of "No Longer Human"?', answer: 'Osamu Dazai', reward: '+Academics' },
+      { date: 'Jun 13', type: 'class', subject: 'Health',             question: 'What is the powerhouse of the cell?', answer: 'Mitochondria', reward: '+Academics' },
+      { date: 'Jun 15', type: 'class', subject: 'Classical Japanese', question: 'The Manyoshu is the oldest what?', answer: 'Collection of Japanese poetry', reward: '+Academics' },
+      { date: 'Jun 20', type: 'class', subject: 'Modern Japanese',    question: 'What literary movement did Soseki belong to?', answer: 'Naturalism', reward: '+Academics' },
+      { date: 'Jun 22', type: 'free',  subject: 'Rainy afternoon',    question: 'No class scheduled', answer: 'Study, read library books or hang out', reward: 'Free Time' },
+      { date: 'Jun 27', type: 'class', subject: 'Mathematics',        question: 'What is the derivative of x²?', answer: '2x', reward: '+Academics' },
+    ]
+  },
+  july: {
+    name: 'July', sub: 'Final exams — Ken & Koromaru join',
+    entries: [
+      { date: 'Jul 3',  type: 'class', subject: 'Health',             question: 'What vitamin is produced by sunlight?', answer: 'Vitamin D', reward: '+Academics' },
+      { date: 'Jul 7',  type: 'class', subject: 'Classical Japanese', question: 'What is a "renga"?', answer: 'Linked verse poetry', reward: '+Academics' },
+      { date: 'Jul 10', type: 'class', subject: 'Modern Japanese',    question: 'What is onomatopoeia?', answer: 'Words that imitate sounds', reward: '+Academics' },
+      { date: 'Jul 14', type: 'exam',  subject: '📝 FINAL EXAMS', question: '', answer: '', reward: 'Top Score Bonus', isExam: true,
+        examQA: [
+          { q: 'What is the formula for the area of a circle?',    a: 'πr²' },
+          { q: 'Who wrote "No Longer Human"?',                     a: 'Osamu Dazai' },
+          { q: 'What is the powerhouse of the cell?',              a: 'Mitochondria' },
+          { q: 'What is the Manyoshu?',                            a: 'Oldest collection of Japanese poetry' },
+          { q: 'What is the derivative of x²?',                   a: '2x' },
+          { q: 'What vitamin is produced by sunlight?',            a: 'Vitamin D' },
+          { q: 'What is a renga?',                                 a: 'Linked verse poetry' },
+        ]
+      },
+      { date: 'Jul 20', type: 'free',  subject: 'Summer begins',      question: 'Summer break starts', answer: 'Focus on Tartarus and Social Links', reward: 'Free Time' },
+    ]
+  },
+  august: {
+    name: 'August', sub: 'Summer break — Aigis joins SEES',
+    entries: [
+      { date: 'Aug 2',  type: 'free',  subject: 'Summer break',       question: 'No school — free all day', answer: 'Great time for Social Links and Tartarus', reward: 'Free Time' },
+      { date: 'Aug 7',  type: 'class', subject: 'Supplementary',      question: 'What is the speed of light?', answer: '300,000 km/s', reward: '+Academics' },
+      { date: 'Aug 9',  type: 'class', subject: 'Supplementary',      question: 'What does DNA stand for?', answer: 'Deoxyribonucleic acid', reward: '+Academics' },
+      { date: 'Aug 21', type: 'class', subject: 'Supplementary',      question: 'What is the atomic number of carbon?', answer: '6', reward: '+Academics' },
+      { date: 'Aug 30', type: 'free',  subject: 'Summer ends',        question: 'Last day of summer break', answer: 'Prepare for fall semester', reward: 'Free Time' },
+    ]
+  },
+  september: {
+    name: 'September', sub: 'Fall semester — Shinjiro returns',
+    entries: [
+      { date: 'Sep 1',  type: 'class', subject: 'Modern Japanese',    question: 'What is a "haiku"?', answer: '17 syllable poem — 5/7/5', reward: '+Academics' },
+      { date: 'Sep 5',  type: 'class', subject: 'Health',             question: 'What is the normal human body temperature?', answer: '36.5°C / 98.6°F', reward: '+Academics' },
+      { date: 'Sep 10', type: 'class', subject: 'Classical Japanese', question: 'What is "mono no aware"?', answer: 'Appreciation of impermanence', reward: '+Academics' },
+      { date: 'Sep 14', type: 'class', subject: 'Mathematics',        question: 'What is the value of pi to 4 decimal places?', answer: '3.1415', reward: '+Academics' },
+      { date: 'Sep 17', type: 'free',  subject: 'Autumn festival',    question: 'No class — school event', answer: 'Spend time with party members', reward: 'Free Time' },
+      { date: 'Sep 21', type: 'class', subject: 'Modern Japanese',    question: 'What is "stream of consciousness" writing?', answer: 'Narrative depicting thought processes', reward: '+Academics' },
+      { date: 'Sep 25', type: 'class', subject: 'Health',             question: 'How many bones are in the adult human body?', answer: '206', reward: '+Academics' },
+    ]
+  },
+  october: {
+    name: 'October', sub: 'Second midterm — Shinjiro deadline',
+    entries: [
+      { date: 'Oct 3',  type: 'class', subject: 'Classical Japanese', question: 'Who wrote "The Pillow Book"?', answer: 'Sei Shonagon', reward: '+Academics' },
+      { date: 'Oct 6',  type: 'class', subject: 'Mathematics',        question: 'What is the square root of 144?', answer: '12', reward: '+Academics' },
+      { date: 'Oct 10', type: 'class', subject: 'Modern Japanese',    question: 'What is a metaphor?', answer: 'Direct comparison without like or as', reward: '+Academics' },
+      { date: 'Oct 14', type: 'test',  subject: '📝 MIDTERM EXAMS', question: '', answer: '', reward: 'Top Score Bonus', isExam: true,
+        examQA: [
+          { q: 'What is a haiku?',                                 a: '17 syllable poem — 5/7/5' },
+          { q: 'What is mono no aware?',                           a: 'Appreciation of impermanence' },
+          { q: 'What is stream of consciousness?',                 a: 'Narrative depicting thought processes' },
+          { q: 'Who wrote The Pillow Book?',                       a: 'Sei Shonagon' },
+          { q: 'What is the square root of 144?',                  a: '12' },
+          { q: 'How many bones in the adult human body?',          a: '206' },
+        ]
+      },
+      { date: 'Oct 22', type: 'free',  subject: 'Post-exam rest',     question: 'Free time after exams', answer: 'Social Links or Tartarus', reward: 'Free Time' },
+    ]
+  },
+  november: {
+    name: 'November', sub: 'Ryoji arrives — story accelerates',
+    entries: [
+      { date: 'Nov 4',  type: 'class', subject: 'Health',             question: 'What part of the eye detects color?', answer: 'Cones', reward: '+Academics' },
+      { date: 'Nov 7',  type: 'class', subject: 'Modern Japanese',    question: 'What is an "unreliable narrator"?', answer: 'A narrator whose credibility is compromised', reward: '+Academics' },
+      { date: 'Nov 12', type: 'class', subject: 'Mathematics',        question: 'What is the sum of angles in a triangle?', answer: '180 degrees', reward: '+Academics' },
+      { date: 'Nov 17', type: 'class', subject: 'Classical Japanese', question: 'The Kojiki is Japan\'s oldest what?', answer: 'Historical chronicle', reward: '+Academics' },
+      { date: 'Nov 20', type: 'class', subject: 'Health',             question: 'What is the largest organ in the human body?', answer: 'Skin', reward: '+Academics' },
+      { date: 'Nov 24', type: 'free',  subject: 'Autumn holiday',     question: 'No class scheduled', answer: 'Key Social Link day — prioritize Ryoji (FeMC)', reward: 'Free Time' },
+    ]
+  },
+  december: {
+    name: 'December', sub: 'Final exams — critical story choices',
+    entries: [
+      { date: 'Dec 3',  type: 'class', subject: 'Modern Japanese',    question: 'What is the climax of a story?', answer: 'Point of highest tension', reward: '+Academics' },
+      { date: 'Dec 6',  type: 'class', subject: 'Mathematics',        question: 'What is 15% of 200?', answer: '30', reward: '+Academics' },
+      { date: 'Dec 10', type: 'class', subject: 'Health',             question: 'What is the function of red blood cells?', answer: 'Transport oxygen', reward: '+Academics' },
+      { date: 'Dec 14', type: 'exam',  subject: '📝 FINAL EXAMS', question: '', answer: '', reward: 'Top Score Bonus', isExam: true,
+        examQA: [
+          { q: 'What part of the eye detects color?',              a: 'Cones' },
+          { q: 'What is an unreliable narrator?',                  a: 'A narrator whose credibility is compromised' },
+          { q: 'What is the sum of angles in a triangle?',         a: '180 degrees' },
+          { q: 'The Kojiki is Japan\'s oldest what?',              a: 'Historical chronicle' },
+          { q: 'What is the largest organ in the human body?',     a: 'Skin' },
+          { q: 'What is 15% of 200?',                              a: '30' },
+          { q: 'What transports oxygen in blood?',                 a: 'Red blood cells' },
+        ]
+      },
+      { date: 'Dec 24', type: 'free',  subject: 'Christmas Eve',      question: 'No class — story event', answer: 'Critical story night — no free activities', reward: 'Story Event' },
+    ]
+  },
+  january: {
+    name: 'January', sub: 'Final stretch — endgame approaches',
+    entries: [
+      { date: 'Jan 8',  type: 'class', subject: 'Modern Japanese',    question: 'What is the resolution of a story called?', answer: 'Denouement', reward: '+Academics' },
+      { date: 'Jan 13', type: 'class', subject: 'Classical Japanese', question: 'What is "wabi-sabi"?', answer: 'Beauty in imperfection and impermanence', reward: '+Academics' },
+      { date: 'Jan 18', type: 'class', subject: 'Health',             question: 'What is the medical term for the kneecap?', answer: 'Patella', reward: '+Academics' },
+      { date: 'Jan 21', type: 'class', subject: 'Mathematics',        question: 'What is the Pythagorean theorem?', answer: 'a² + b² = c²', reward: '+Academics' },
+      { date: 'Jan 25', type: 'free',  subject: 'Last free days',     question: 'Final weeks before endgame', answer: 'Max remaining Social Links now', reward: 'Free Time' },
+      { date: 'Jan 31', type: 'free',  subject: 'January ends',       question: 'February is story-locked', answer: 'Ensure all Social Links are maxed', reward: '⚠️ Last Chance' },
+    ]
+  }
+};
+
+function setMonth(month, btn) {
+  document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMonth(month);
+}
+
+function renderMonth(month) {
+  const data    = CLASS_DATA[month];
+  const content = document.getElementById('month-content');
+  if (!data || !content) return;
+
+  let html = `
+    <div class="month-header">
+      <span class="month-name">${data.name}</span>
+      <span class="month-sub">${data.sub}</span>
+    </div>
+    <div class="entries-list">
+  `;
+
+  data.entries.forEach(e => {
+    if (e.isExam) {
+      const qaRows = e.examQA.map(qa => `
+        <div class="exam-item">
+          <div class="exam-q">${qa.q}</div>
+          <div class="exam-a">${qa.a}</div>
+        </div>`).join('');
+      html += `
+        <div class="exam-block">
+          <div class="exam-block-title">
+            ${e.subject} &nbsp;·&nbsp; ${e.date}
+            <span style="font-size:10px;letter-spacing:0.15em;color:var(--muted);font-family:'DM Sans',sans-serif;font-weight:300;">— Answer all correctly for top score bonus</span>
+          </div>
+          <div class="exam-qa">${qaRows}</div>
+        </div>`;
+    } else {
+      const typeLabel = { class:'Class', free:'Free', test:'Mid-term', exam:'Exam' }[e.type] || e.type;
+      html += `
+        <div class="entry">
+          <div class="entry-date">${e.date.replace(/\w+ /,'')}</div>
+          <div class="entry-type"><span class="entry-type-badge type-${e.type}">${typeLabel}</span></div>
+          <div class="entry-content">
+            <div class="entry-subject">${e.subject}</div>
+            ${e.question ? `<div class="entry-question">${e.question}</div>` : ''}
+            ${e.answer   ? `<div class="entry-answer">${e.answer}</div>`   : ''}
+          </div>
+          <div class="entry-reward"><span class="reward-tag">${e.reward}</span></div>
+        </div>`;
+    }
+  });
+
+  html += `</div>`;
+  content.innerHTML = html;
+}
+
+/* Override showSec to include classes tab */
+window.showSec = function (id, btn) {
+  document.getElementById('chars-content').classList.toggle('visible',   id === 'chars');
+  document.getElementById('about-content').classList.toggle('visible',   id === 'about');
+  const cc = document.getElementById('classes-content');
+  if (cc) cc.classList.toggle('visible', id === 'classes');
+  document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.querySelector('.page-main').scrollIntoView({ behavior: 'smooth' });
+  if (id === 'classes') {
+    const mc = document.getElementById('month-content');
+    if (mc && !mc.innerHTML.trim()) renderMonth('april');
+  }
+};

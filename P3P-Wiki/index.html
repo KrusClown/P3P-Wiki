@@ -28,6 +28,7 @@
     <div class="nav-links">
       <button class="nav-link active" onclick="showSec('chars',this)">Characters</button>
       <button class="nav-link" onclick="showSec('about',this)">About</button>
+      <button class="nav-link" onclick="showSec('classes',this)">Class Guide</button>
     </div>
   </nav>
 
@@ -102,6 +103,49 @@
       <div class="about-card"><div class="about-icon">👤</div><h3>Two Routes</h3><p>P3P offers two protagonists. The Male route follows the original story. The Female route features unique Social Links, romance options with Shinjiro and Ryoji, and a different emotional tone throughout the journey.</p></div>
     </div>
   </div>
+  <!-- CLASS GUIDE SECTION -->
+  <div class="class-section" id="classes-content">
+    <div class="sec-header">
+      <div class="sec-title-group">
+        <span class="sec-label">Gekkoukan High School — Academic Calendar</span>
+        <h2 class="sec-title">Class &amp; Exam Guide</h2>
+      </div>
+      <div class="class-legend">
+        <span class="leg-item leg-exam">Exam</span>
+        <span class="leg-item leg-test">Mid-term</span>
+        <span class="leg-item leg-class">Class Q&amp;A</span>
+        <span class="leg-item leg-tip">Free Day</span>
+      </div>
+    </div>
+    <div class="class-intro">
+      <p>Attending classes and answering questions correctly boosts your <strong>Academics</strong> stat, which is required to rank up certain Social Links. Exams reward you with bonus points if answered perfectly. Use this guide to never miss a correct answer.</p>
+    </div>
+    <div class="month-tabs" id="month-tabs">
+      <button class="mtab active" onclick="setMonth('april',this)">Apr</button>
+      <button class="mtab" onclick="setMonth('may',this)">May</button>
+      <button class="mtab" onclick="setMonth('june',this)">Jun</button>
+      <button class="mtab" onclick="setMonth('july',this)">Jul</button>
+      <button class="mtab" onclick="setMonth('august',this)">Aug</button>
+      <button class="mtab" onclick="setMonth('september',this)">Sep</button>
+      <button class="mtab" onclick="setMonth('october',this)">Oct</button>
+      <button class="mtab" onclick="setMonth('november',this)">Nov</button>
+      <button class="mtab" onclick="setMonth('december',this)">Dec</button>
+      <button class="mtab" onclick="setMonth('january',this)">Jan</button>
+    </div>
+    <div class="month-content" id="month-content"></div>
+    <div class="class-tips-section">
+      <div class="sec-label" style="padding:0 64px;margin-bottom:24px;">Academic Tips</div>
+      <div class="class-tips-grid">
+        <div class="class-tip-card"><div class="tip-icon">📚</div><h3>Study at the Dorm</h3><p>On nights with no Tartarus exploration or events, studying in your dorm room gives +2 to +3 Academics. Always study on free evenings.</p></div>
+        <div class="class-tip-card"><div class="tip-icon">📖</div><h3>Library Books</h3><p>Borrowing and reading books from the school library passively boosts Academics. Some books also improve Courage or Charm. Prioritize academic books early game.</p></div>
+        <div class="class-tip-card"><div class="tip-icon">🍔</div><h3>Wakatsu Kitchen</h3><p>Eating the daily special at Wakatsu Kitchen can grant Academic boosts. Check the special every day — it rotates and some meals give +2 Academics.</p></div>
+        <div class="class-tip-card"><div class="tip-icon">🎯</div><h3>Exam Scores Matter</h3><p>Scoring in the top 10 on exams rewards you with bonus items and significantly more Academic points. Use this guide to get perfect exam scores every time.</p></div>
+        <div class="class-tip-card"><div class="tip-icon">🌙</div><h3>Dark Hour Priority</h3><p>On full moon nights and story event nights, academic activities are locked. Plan your study schedule around these fixed dates to maximize free evening productivity.</p></div>
+        <div class="class-tip-card"><div class="tip-icon">⚡</div><h3>Required Thresholds</h3><p>Mitsuru's Social Link requires <strong>Academics: Genius</strong> to start. Emperor (Akihiko) and several NPCs also require high Academics. Prioritize hitting Genius before mid-game.</p></div>
+      </div>
+    </div>
+  </div>
+
 </main>
 
 <footer>
