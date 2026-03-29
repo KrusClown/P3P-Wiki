@@ -1,62 +1,66 @@
 # Persona 3 Portable — SEES Archive 🎴
 
-A fan-made wiki for Persona 3 Portable with characters, class guide, quiz mode, and a full Dark Hour aesthetic.
+Fan-made wiki for P3P — characters, class guide, quiz mode, and full Dark Hour aesthetic.
 
-## ✨ Features
-
-### Content
-- Full character encyclopedia with portraits (14 members)
-- Unlock guide for every SEAS member
-- Filter by route — Starter, Story, Event, FeMC Only, Favorites
-- Live search with text highlight
-- Character detail modal
-- Class & Exam Guide — all school Q&A answers by month
-- 🎓 Quiz Mode — interactive class quiz with score tracking
+## ✨ All Effects & Features
 
 ### Visual Effects
 - GLSL WebGL shader background (domain warping fBm)
-- Constellation background in hero (animated star map)
+- Blood Moon — atmospheric parallax moon in hero
+- Constellation background — animated star map
+- Hover 3D tilt + shine on character cards
+- Section wipe transition between nav tabs
 - Glitch title animation on load
 - Neon flicker on subtitle
 - Vignette pulse
-- Scroll reveal on character cards
-- Custom dark red cursor with light trail & ring
-- Idle Dark Hour overlay after 30s inactivity
+- Scroll reveal on cards
+- Custom dark red cursor with trail & ring
+- Idle Dark Hour overlay (30s inactivity)
 - Animated stat counters
-- Typing effect on character descriptions (modal)
+
+### Modal
+- Stats radar chart (animated SVG hexagon)
+- Stat bars with color gradients
+- Typing effect on character descriptions
+- Share button with URL copy
+
+### Content
+- 14 character profiles with portraits
+- Unlock guide for every member
+- Filter by route + Favorites
+- Live search with highlight
+- Class & Exam Guide (10 months)
+- Interactive Quiz Mode with scoring
 
 ### UX & Technical
-- Cookie consent banner (GDPR-style)
-- Favorite characters with ♥ button (saved in cookies)
-- Last filter, search & section restored on return
-- URL state sync — share direct links to characters (?character=aigis)
-- Share button on every card + inside modal
+- Cookie consent banner
+- Favorites saved in cookies
+- Last filter/search/section restored
+- URL state sync (?character=aigis)
+- Share button on cards + modal
 - Lazy image loading
-- Visibility API pause (saves CPU when tab hidden)
-- SEES-themed preloader screen
+- Visibility API pause
+- SEES preloader screen
 
-## 🗂️ Structure
+## 🗂️ File Structure
 ```
 P3P-Wiki/
 ├── index.html
 ├── css/styles.css
 ├── js/
-│   ├── script.js          ← Character data + UI + Class guide + Quiz
-│   ├── effects.js         ← GLSL shader, cursor, idle overlay
-│   ├── optimizations.js   ← Preloader, lazy images, visibility API
-│   ├── cookies.js         ← Cookie consent, favorites, state memory
-│   └── new-effects.js     ← Scroll reveal, constellation, neon flicker,
-│                             typing effect, quiz, URL sync, share button
-└── assets/images/characters/  ← 14 character portraits
+│   ├── script.js           ← Data + UI + Class guide + Quiz
+│   ├── effects.js          ← GLSL, cursor, idle overlay
+│   ├── optimizations.js    ← Preloader, lazy load, visibility
+│   ├── cookies.js          ← Consent, favorites, state memory
+│   ├── new-effects.js      ← Scroll reveal, constellation, neon,
+│   │                          typing, quiz, URL sync, share
+│   └── premium-effects.js  ← 3D tilt+shine, wipe transition,
+│                              blood moon, stats radar
+└── assets/images/characters/
 ```
 
-## 🚀 How to Run
-Open `index.html` in any modern browser. No build tools required.
-
-## 🌐 GitHub Pages
-1. Push to GitHub repo
-2. Settings → Pages → main branch / root
-3. Live at `https://yourusername.github.io/P3P-Wiki`
+## 🚀 Run
+Open `index.html` — no build tools needed.
 
 ## ⚠️ Disclaimer
-Fan project — not affiliated with Atlus. Persona 3 Portable © Atlus.
+Fan project. Persona 3 Portable © Atlus.
