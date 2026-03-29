@@ -30,7 +30,9 @@ P3P-Wiki/
 │   ├── script.js
 │   ├── effects.js
 │   ├── optimizations.js
-│   └── cookies.js
+│   ├── cookies.js
+│   ├── new-effects.js
+│   └── premium-effects.js
 │
 ├── assets/
 │   └── images/
