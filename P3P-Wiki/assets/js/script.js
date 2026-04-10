@@ -143,7 +143,120 @@ const CHARS = [
     desc:'Mitsuru\'s father and the chairman of the Kirijo Group. Takeharu plays a pivotal supporting role in the story\'s progression and SEES\'s broader mission. Not a playable party member, but central to understanding the game\'s mythology — specifically the Kirijo Group\'s experiments that created the Dark Hour in the first place.',
     unlock:'Story NPC — appears automatically through plot progression at key story beats. Not playable in any version of Persona 3 Portable.',
     skills:['Story Character Only','Non-playable','Key Narrative Role']
-  }
+  },
+
+  // ── STREGA ──
+  {
+    id:15, filter:'enemy', rt:'enemy',
+    name:'Takaya Sakaki', role:'Strega Leader · Antagonist',
+    arcana:'Tower', persona:'Hypnos',
+    bday:'Unknown', weapon:'Revolver', routeLabel:'Both Routes (antagonist)', va:'Jouji Nakata (JP)',
+    img:'', initial:'TA',
+    desc:'The charismatic and nihilistic leader of Strega, a group of artificial Persona-users. Takaya views the end of the Dark Hour as a death sentence — it is the only thing keeping him alive — and works to destroy SEES\'s mission. Cold, theatrical and philosophical, he is one of P3\'s most memorable antagonists.',
+    unlock:'Story antagonist — appears automatically through plot events. Not a playable character. Upload your own photo.',
+    skills:['Hypnos Persona','Revolver Expert','Nihilistic Philosophy','Megidola (boss)']
+  },
+  {
+    id:16, filter:'enemy', rt:'enemy',
+    name:'Jin Shirato', role:'Strega Member · Bomber',
+    arcana:'Hermit', persona:'Moros',
+    bday:'Unknown', weapon:'Grenades / Bombs', routeLabel:'Both Routes (antagonist)', va:'Hiroki Tochi (JP)',
+    img:'', initial:'JN',
+    desc:'Takaya\'s loyal right-hand man and tactical support of Strega. Jin is calculating and analytical, providing logistical support for Strega\'s operations. He uses bomb-based attacks in battle and is fiercely devoted to Takaya above all else. His fate is directly tied to Strega\'s final confrontation with SEES.',
+    unlock:'Story antagonist — appears automatically. Not playable. Upload your own photo.',
+    skills:['Moros Persona','Bomb Attacks','Bufudyne','Tactical Support']
+  },
+  {
+    id:17, filter:'enemy', rt:'enemy',
+    name:'Chidori Yoshino', role:'Strega Member · Artist',
+    arcana:'Priestess', persona:'Medea',
+    bday:'November 8', weapon:'Cleaver', routeLabel:'Both Routes (linked to Junpei)', va:'Miyuki Sawashiro (JP)',
+    img:'', initial:'CH',
+    desc:'A quiet, detached member of Strega who expresses herself through obsessive sketching in her notebook. Chidori develops a complex and deeply emotional bond with Junpei that forms one of P3\'s most heartbreaking storylines. Her Persona Medea has powerful healing and poison abilities.',
+    unlock:'Appears through story events connected to Junpei\'s arc. Her relationship with Junpei unfolds across multiple story beats in both routes. Not playable. Upload your own photo.',
+    skills:['Medea Persona','Poison Mist','Mediarama','Regenerate 3']
+  },
+  // ── SOCIAL LINK NPCs ──
+  {
+    id:18, filter:'npc', rt:'npc',
+    name:'Elizabeth', role:'Velvet Room Attendant',
+    arcana:'Fool (special)', persona:'Thanatos (ultimate)',
+    bday:'Unknown', weapon:'Compendium / Magic', routeLabel:'Male Route (S.Link: Empress)', va:'Miyuki Sawashiro (JP)',
+    img:'', initial:'EL',
+    desc:'The Velvet Room attendant who assists the male protagonist. Cheerful, curious and fascinatingly naive about the human world, Elizabeth manages the Persona Compendium and issues optional requests. She has her own boss fight and Social Link exclusive to the male route, making her one of the most beloved characters in the series.',
+    unlock:'Available from the start of the game in the Velvet Room (male route). Social Link (Empress) begins automatically when you first visit and ranks up by completing her 55 requests throughout the game.',
+    skills:['55 Request Quests','Compendium Access','Empress S.Link (Male)','Secret Boss Fight']
+  },
+  {
+    id:19, filter:'npc', rt:'fem',
+    name:'Theodore', role:'Velvet Room Attendant',
+    arcana:'Fool (special)', persona:'Thanatos (ultimate)',
+    bday:'Unknown', weapon:'Compendium / Magic', routeLabel:'Female Route (S.Link: Empress)', va:'Akira Ishida (JP)',
+    img:'', initial:'TH',
+    desc:'Elizabeth\'s younger brother and the Velvet Room attendant for the female protagonist. More reserved and earnest than his sister, Theodore develops a touching personal journey as he experiences human emotions for the first time through his bond with the female protagonist. His Social Link is one of the female route\'s most rewarding.',
+    unlock:'Available from the start of the game in the Velvet Room (female route only). Social Link (Empress) ranks up by completing his requests throughout the game — exclusive to the Female Protagonist route.',
+    skills:['Request Quests','Compendium Access','Empress S.Link (Female)','Secret Boss Fight']
+  },
+  {
+    id:20, filter:'npc', rt:'npc',
+    name:'Igor', role:'Velvet Room Master',
+    arcana:'Fool', persona:'N/A',
+    bday:'Unknown', weapon:'N/A', routeLabel:'Both Routes', va:'Isamu Tanonaka (JP)',
+    img:'', initial:'IG',
+    desc:'The enigmatic long-nosed master of the Velvet Room who facilitates Persona fusion for the protagonist. Igor has appeared throughout the Persona series as a constant guide to Wild Card users. He speaks cryptically but always with the protagonist\'s best interests at heart, overseeing their journey toward their ultimate fate.',
+    unlock:'Available immediately from the first Velvet Room visit. Not a Social Link in P3P — he is the Velvet Room host and fusion master for the entire game.',
+    skills:['Persona Fusion','Compendium Registry','Special Fusion','Series Constant']
+  },
+  {
+    id:21, filter:'npc', rt:'npc',
+    name:'Pharos', role:'Mysterious Child',
+    arcana:'Death', persona:'Thanatos (fragment)',
+    bday:'Unknown', weapon:'N/A', routeLabel:'Both Routes', va:'Akira Ishida (JP)',
+    img:'', initial:'PH',
+    desc:'A mysterious young boy who appears in the protagonist\'s dreams, visiting their dorm room at night. Pharos speaks in riddles and seems deeply connected to the protagonist\'s fate and the nature of Death. His true identity is one of the game\'s most significant revelations and is tied directly to the game\'s climax.',
+    unlock:'Appears automatically through story events — he visits the protagonist\'s dorm room at night beginning early in the game. Ranking up conversations with him advances the Death Arcana Social Link (both routes).',
+    skills:['Death Arcana S.Link','Night Visits Only','Key Story Role','Connected to Ryoji']
+  },
+  {
+    id:22, filter:'npc', rt:'npc',
+    name:'Nyx Avatar', role:'Final Boss · Goddess of Death',
+    arcana:'All 12 Arcana', persona:'Erebus / Nyx',
+    bday:'Unknown', weapon:'Cosmic Power', routeLabel:'Both Routes (final boss)', va:'N/A',
+    img:'', initial:'NX',
+    desc:'The true final boss of Persona 3 and the ultimate obstacle standing between humanity and destruction. Nyx Avatar manifests through 12 arcana phases, each with different weaknesses and abilities. Defeating it requires the bonds the protagonist has built throughout the entire game — their Social Links literally empower the finishing blow.',
+    unlock:'Appears at the top of Tartarus on January 31st during the final confrontation. All 12 phases must be overcome. Recommended level: 75+. Ensure all Social Links are maxed before this date for the true ending.',
+    skills:['12 Arcana Phases','All Element Coverage','Moonless Gown','Death Incarnate']
+  },
+  {
+    id:23, filter:'npc', rt:'npc',
+    name:'Kenji Tomochika', role:'Classmate · Social Link',
+    arcana:'Magician', persona:'N/A',
+    bday:'April 29', weapon:'N/A', routeLabel:'Both Routes', va:'N/A',
+    img:'', initial:'KJ',
+    desc:'The male protagonist\'s cheerful classmate who has an enthusiastic (and comedic) crush on a female teacher at Gekkoukan. His Social Link explores themes of youthful infatuation, growing up, and what it means to pursue impossible ideals. Ranking up his link is straightforward and available from early April.',
+    unlock:'Social Link (Magician) available from April by talking to him at Gekkoukan High. Available on Male route. Spend time with him after school to progress his link.',
+    skills:['Magician S.Link','Available April','Male Route Only','Comedy Relief']
+  },
+  {
+    id:24, filter:'npc', rt:'fem',
+    name:'Hidetoshi Odagiri', role:'Student Council · Social Link',
+    arcana:'Emperor', persona:'N/A',
+    bday:'August 8', weapon:'N/A', routeLabel:'Female Route Only', va:'N/A',
+    img:'', initial:'HO',
+    desc:'A strict and principled member of the student council who takes rules extremely seriously. Hidetoshi\'s Social Link explores themes of justice, authority and what it truly means to uphold principles in a flawed world. His arc has surprising emotional depth beneath his rigid exterior.',
+    unlock:'Social Link (Emperor) available on Female route from May by joining the Student Council. Spend time with him at the student council room to progress the link.',
+    skills:['Emperor S.Link (FeMC)','Available May','Student Council','Justice Theme']
+  },
+  {
+    id:25, filter:'npc', rt:'npc',
+    name:'Maiko Oohashi', role:'Child at Shrine · Social Link',
+    arcana:'Hanged Man', persona:'N/A',
+    bday:'Unknown', weapon:'N/A', routeLabel:'Both Routes', va:'N/A',
+    img:'', initial:'MO',
+    desc:'A young girl who can be found at the shrine near the school, struggling with her parents\' impending divorce. Her Social Link is one of the most emotionally affecting in the game — deceptively simple on the surface but deeply moving. She also has a connection to Koromaru\'s backstory at the shrine.',
+    unlock:'Social Link (Hanged Man) available from May on weekends at the Naganaki Shrine. Available on both routes. Bring Weird Takoyaki or Takoyaki snacks to speed up link progression.',
+    skills:['Hanged Man S.Link','Weekend Only','Shrine Location','Emotional Storyline']
+  },
 ];
 
 let currentFilter = 'all';
@@ -157,32 +270,50 @@ function routeLabel(rt) {
 }
 
 /* ── BUILD GRID ── */
+/* ── CUSTOM IMAGE STORE (sessionStorage so images persist through tab) ── */
+const CustomImages = {
+  get(id)       { try { return sessionStorage.getItem('p3p_img_' + id); } catch(e) { return null; } },
+  set(id, data) { try { sessionStorage.setItem('p3p_img_' + id, data); } catch(e) {} },
+};
+
 function buildGrid() {
   const g = document.getElementById('grid');
   g.innerHTML = '';
   CHARS.forEach((c, i) => {
-    const show = currentFilter === 'all' || c.filter === currentFilter;
-    const div  = document.createElement('div');
-    div.className = 'char-card' + (show ? '' : ' hidden');
+    const show      = currentFilter === 'all' || c.filter === currentFilter;
+    const div       = document.createElement('div');
+    const customSrc = CustomImages.get(c.id);
+    const imgSrc    = customSrc || c.img || '';
+    const hasPhoto  = !!(customSrc || c.img);
+
+    // New chars without a default photo get the empty-slot style
+    div.className = 'char-card' + (show ? '' : ' hidden') + (!hasPhoto ? ' empty-slot' : '');
     div.style.animationDelay = (i * 0.045) + 's';
     div.onclick = () => openModal(c);
-    const shortUnlock = c.unlock.length > 90 ? c.unlock.substring(0, 87) + '…' : c.unlock;
+    const shortUnlock = c.unlock.length > 90 ? c.unlock.substring(0, 87) + '...' : c.unlock;
+
+    // Upload button: always visible on empty slots, hover-only on filled ones
+    const uploadClass = hasPhoto ? 'upload-btn' : 'upload-btn upload-btn-visible';
+    const uploadLabel = hasPhoto ? 'Change Photo' : 'Add Photo';
+
     div.innerHTML = `
       <div class="card-portrait">
         <div class="portrait-placeholder">${c.initial}</div>
-        <img class="portrait-img" src="${c.img}" alt="${c.name}"
+        ${imgSrc ? `<img class="portrait-img" src="${imgSrc}" alt="${c.name}"
           onload="this.style.opacity=1;this.previousElementSibling.style.display='none'"
           onerror="this.style.display='none';this.previousElementSibling.style.display='flex'"
-          style="opacity:0;transition:opacity 0.5s;">
+          style="opacity:0;transition:opacity 0.5s;">` : ''}
         <div class="portrait-overlay"></div>
         <div class="p-arcana">${c.arcana}</div>
         <div class="p-route ${routeClass(c.filter)}">${routeLabel(c.filter)}</div>
+        <button class="${uploadClass}" onclick="event.stopPropagation();triggerUpload(${c.id})">+ ${uploadLabel}</button>
+        <input class="upload-input" type="file" id="upload-${c.id}" accept="image/*" onchange="handleUpload(${c.id}, this)">
       </div>
       <div class="card-body">
         <div><div class="card-name">${c.name}</div><div class="card-role">${c.role}</div></div>
         <div class="card-hr"></div>
         <div class="card-meta">
-          <div class="meta-i"><span class="meta-l">Persona</span><span class="meta-v">${c.persona.split('→')[0].trim()}</span></div>
+          <div class="meta-i"><span class="meta-l">Persona</span><span class="meta-v">${c.persona.split('\u2192')[0].trim()}</span></div>
           <div class="meta-i"><span class="meta-l">Weapon</span><span class="meta-v">${c.weapon}</span></div>
           <div class="meta-i"><span class="meta-l">Birthday</span><span class="meta-v">${c.bday}</span></div>
           <div class="meta-i"><span class="meta-l">Route</span><span class="meta-v">${c.routeLabel}</span></div>
@@ -197,6 +328,88 @@ function buildGrid() {
   });
   updateCount();
 }
+
+/* ── UPLOAD HANDLERS ── */
+window.triggerUpload = function(id) {
+  const input = document.getElementById('upload-' + id);
+  if (input) input.click();
+};
+
+window.handleUpload = function(id, input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  // Validate it's an image
+  if (!file.type.startsWith('image/')) {
+    if (typeof showToast !== 'undefined') showToast('Please select an image file');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataUrl = e.target.result;
+
+    // Save to session storage
+    CustomImages.set(id, dataUrl);
+
+    // Update all portrait images for this character (card + modal)
+    document.querySelectorAll('.char-card').forEach((card, i) => {
+      if (window.CHARS[i]?.id === id) {
+        const img = card.querySelector('.portrait-img');
+        const ph  = card.querySelector('.portrait-placeholder');
+        if (img) {
+          img.src = dataUrl;
+          img.style.opacity = '1';
+          if (ph) ph.style.display = 'none';
+        }
+      }
+    });
+
+    // Update CHARS data so modal also shows new image
+    const char = window.CHARS.find(c => c.id === id);
+    if (char) char._customImg = dataUrl;
+
+    if (typeof showToast !== 'undefined') showToast('✓ Photo updated successfully');
+  };
+  reader.readAsDataURL(file);
+  // Reset input so same file can be re-selected
+  input.value = '';
+};
+
+/* ── MODAL UPLOAD HANDLER ── */
+window.handleModalUpload = function(input) {
+  const file = input.files[0];
+  if (!file || !file.type.startsWith('image/')) return;
+
+  // Find current modal character by name
+  const name = document.getElementById('m-name')?.textContent;
+  const char = window.CHARS.find(c => c.name === name);
+  if (!char) return;
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataUrl = e.target.result;
+    CustomImages.set(char.id, dataUrl);
+    char._customImg = dataUrl;
+
+    // Update modal image
+    const mImg = document.getElementById('m-img');
+    if (mImg) { mImg.src = dataUrl; mImg.style.opacity = '1'; }
+
+    // Update card image too
+    document.querySelectorAll('.char-card').forEach((card, i) => {
+      if (window.CHARS[i]?.id === char.id) {
+        const img = card.querySelector('.portrait-img');
+        const ph  = card.querySelector('.portrait-placeholder');
+        if (img) { img.src = dataUrl; img.style.opacity = '1'; if (ph) ph.style.display = 'none'; }
+      }
+    });
+
+    if (typeof showToast !== 'undefined') showToast('✓ Photo updated for ' + char.name);
+  };
+  reader.readAsDataURL(file);
+  input.value = '';
+};
 
 /* ── FILTER ── */
 function setF(f, btn) {
@@ -242,7 +455,10 @@ function openModal(c) {
   const img = document.getElementById('m-img');
   const ph  = document.getElementById('m-ph');
   img.style.display = 'block'; ph.style.display = 'none';
-  img.src = c.img; img.alt = c.name;
+  // Use custom uploaded image if available
+  const customSrc = CustomImages.get(c.id);
+  img.src = customSrc || c._customImg || c.img;
+  img.alt = c.name;
   ph.textContent = c.initial;
   document.getElementById('m-name').textContent    = c.name;
   document.getElementById('m-role').textContent    = c.role;
@@ -268,11 +484,19 @@ function outsideClose(e) {
 
 /* ── SECTION SWITCH ── */
 function showSec(id, btn) {
-  document.getElementById('chars-content').classList.toggle('visible', id === 'chars');
-  document.getElementById('about-content').classList.toggle('visible', id === 'about');
+  // Toggle ALL known sections
+  ['chars','about','classes','tartarus','party'].forEach(s => {
+    const el = document.getElementById(s + '-content');
+    if (el) el.classList.toggle('visible', id === s);
+  });
   document.querySelectorAll('.nav-link').forEach(b => b.classList.remove('active'));
   if (btn) btn.classList.add('active');
   document.querySelector('.page-main').scrollIntoView({ behavior: 'smooth' });
+  // Save section to cookie
+  if (typeof SectionMemory !== 'undefined') SectionMemory.save(id);
+  // Lazy-init new sections
+  if (id === 'tartarus' && !window._tartarusInit) { if(typeof initTartarus==='function'){initTartarus();} window._tartarusInit = true; }
+  if (id === 'party'    && !window._partyInit)    { if(typeof initParty==='function'){initParty();}       window._partyInit = true; }
 }
 
 /* ── KEYBOARD ── */

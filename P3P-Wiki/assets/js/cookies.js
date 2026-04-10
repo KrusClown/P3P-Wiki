@@ -145,8 +145,7 @@ function hookIntoExisting() {
   window.setF = function (f, btn) { _setF(f, btn); FilterMemory.saveFilter(f); };
   const _search = window.liveSearch;
   window.liveSearch = function (v) { _search(v); FilterMemory.saveSearch(v); };
-  const _showSec = window.showSec;
-  window.showSec = function (id, btn) { _showSec(id, btn); SectionMemory.save(id); };
+  // showSec is NOT hooked here — script.js already calls SectionMemory.save internally
   const _buildGrid = window.buildGrid;
   window.buildGrid = function () { _buildGrid(); setTimeout(() => { Favorites.applyToGrid(); injectFavTab(); }, 50); };
 }

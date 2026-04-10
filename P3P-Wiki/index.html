@@ -29,6 +29,8 @@
       <button class="nav-link active" onclick="showSec('chars',this)">Characters</button>
       <button class="nav-link" onclick="showSec('about',this)">About</button>
       <button class="nav-link" onclick="showSec('classes',this)">Class Guide</button>
+      <button class="nav-link" onclick="showSec('tartarus',this)">Tartarus</button>
+      <button class="nav-link" onclick="showSec('party',this)">Party Builder</button>
     </div>
   </nav>
 
@@ -73,6 +75,8 @@
         <button class="ftag" onclick="setF('fem',this)">FeMC Only</button>
         <button class="ftag" onclick="setF('both',this)">Both Routes</button>
         <button class="ftag" onclick="setF('optional',this)">Other</button>
+        <button class="ftag" onclick="setF('enemy',this)">Strega</button>
+        <button class="ftag" onclick="setF('npc',this)">NPCs</button>
       </div>
     </div>
 
@@ -83,7 +87,7 @@
         </svg>
         <input type="text" id="search" placeholder="Search characters, arcana, persona…" oninput="liveSearch(this.value)">
       </div>
-      <span class="rcount" id="rcount">14 characters</span>
+      <span class="rcount" id="rcount">25 characters</span>
     </div>
 
     <div class="char-grid" id="grid"></div>
@@ -146,6 +150,52 @@
     </div>
   </div>
 
+  <!-- TARTARUS FLOOR GUIDE -->
+  <div class="tartarus-section" id="tartarus-content">
+    <div class="sec-header">
+      <div class="sec-title-group">
+        <span class="sec-label">Gekkoukan High School — Dark Hour Tower</span>
+        <h2 class="sec-title">Tartarus Floor Guide</h2>
+      </div>
+      <div class="class-legend">
+        <span class="leg-item" style="border-color:rgba(232,64,96,0.6);color:#ff6b85;background:rgba(232,64,96,0.08);">Boss Floor</span>
+        <span class="leg-item" style="border-color:rgba(212,168,75,0.6);color:#f0c86e;background:rgba(212,168,75,0.08);">Barrier</span>
+        <span class="leg-item" style="border-color:rgba(100,180,240,0.5);color:#7ab8e8;background:rgba(100,180,240,0.06);">Key Item</span>
+        <span class="leg-item" style="border-color:rgba(80,200,160,0.5);color:#50c8a0;background:rgba(80,200,160,0.06);">Safe Room</span>
+      </div>
+    </div>
+    <div class="tartarus-blocks" id="tartarus-blocks"></div>
+  </div>
+
+  <!-- PARTY BUILDER -->
+  <div class="party-section" id="party-content">
+    <div class="sec-header">
+      <div class="sec-title-group">
+        <span class="sec-label">SEES Tactical Formation</span>
+        <h2 class="sec-title">Party Builder</h2>
+      </div>
+      <button class="ftag" onclick="clearParty()" style="border-color:rgba(232,64,96,0.4);color:var(--red2);">✕ Clear Party</button>
+    </div>
+    <div class="party-intro">
+      <p>Select up to 3 party members alongside your protagonist. The builder analyzes your party's elemental coverage, identifies missing weaknesses, and rates your team synergy.</p>
+    </div>
+    <div class="party-layout">
+      <div class="party-roster" id="party-roster"></div>
+      <div class="party-panel">
+        <div class="party-slots" id="party-slots">
+          <div class="party-slot empty" data-slot="0"><div class="slot-num">1</div><div class="slot-label">Select Member</div></div>
+          <div class="party-slot empty" data-slot="1"><div class="slot-num">2</div><div class="slot-label">Select Member</div></div>
+          <div class="party-slot empty" data-slot="2"><div class="slot-num">3</div><div class="slot-label">Select Member</div></div>
+        </div>
+        <div class="party-analysis" id="party-analysis">
+          <div class="analysis-placeholder">← Select party members to see analysis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
 </main>
 
 <footer>
@@ -161,6 +211,8 @@
       <img id="m-img" class="modal-img" src="" alt="" onerror="this.style.display='none';document.getElementById('m-ph').style.display='flex'">
       <div id="m-ph" class="modal-img-placeholder" style="display:none">?</div>
       <div class="modal-img-overlay"></div>
+      <button id="modal-upload-btn" onclick="document.getElementById('modal-upload-input').click()" title="Upload new photo">📷</button>
+      <input type="file" id="modal-upload-input" accept="image/*" style="display:none" onchange="handleModalUpload(this)">
       <div class="modal-name-wrap">
         <div class="modal-mname" id="m-name"></div>
         <div class="modal-mrole" id="m-role"></div>
@@ -217,6 +269,7 @@
 <script src="js/cookies.js"></script>
 <script src="js/new-effects.js"></script>
 <script src="js/premium-effects.js"></script>
+<script src="js/content-sections.js"></script>
 
 </body>
 </html>

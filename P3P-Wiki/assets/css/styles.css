@@ -274,7 +274,8 @@ body.clicking #cursor-ring { width: 64px; height: 64px; opacity: 0; }
 
 /* ── GRID ── */
 .char-grid {
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(270px,1fr));
   gap:2px; margin:0 64px;
   background:var(--border); border:1px solid var(--border);
 }
@@ -703,3 +704,92 @@ footer {
   display: flex; justify-content: flex-end;
   padding-top: 8px; border-top: 1px solid var(--border);
 }
+
+/* ── IMAGE UPLOAD BUTTON ── */
+.upload-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px 16px;
+  background: rgba(10,6,8,0.90);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border2);
+  color: var(--cream);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.25s;
+  opacity: 0;
+  font-family: 'DM Sans', sans-serif;
+  pointer-events: none;
+}
+/* Always visible on empty slots */
+.upload-btn.upload-btn-visible {
+  opacity: 1;
+  pointer-events: all;
+  border-color: rgba(232,64,96,0.5);
+  color: var(--red2);
+}
+.char-card:hover .upload-btn {
+  opacity: 1;
+  pointer-events: all;
+}
+.upload-btn:hover {
+  border-color: var(--gold2);
+  color: var(--gold2);
+  background: rgba(10,6,8,0.98);
+  box-shadow: 0 0 16px rgba(212,168,75,0.3);
+}
+.upload-input { display: none; }
+
+/* Empty slot card style */
+.char-card.empty-slot .portrait-placeholder {
+  font-size: 3rem;
+  color: rgba(232,64,96,0.12);
+  flex-direction: column;
+  gap: 10px;
+}
+.char-card.empty-slot .portrait-overlay {
+  background: rgba(10,6,8,0.25);
+}
+.char-card.empty-slot .card-body { opacity: 0.65; }
+
+
+/* ── MODAL UPLOAD BUTTON ── */
+#modal-upload-btn {
+  position: absolute;
+  bottom: 80px;
+  right: 14px;
+  z-index: 10;
+  width: 36px;
+  height: 36px;
+  background: rgba(10,6,8,0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s;
+  opacity: 0;
+}
+.modal-portrait-wrap:hover #modal-upload-btn {
+  opacity: 1;
+}
+#modal-upload-btn:hover {
+  border-color: var(--gold2);
+  color: var(--gold2);
+  transform: scale(1.1);
+}
+
+/* ── STREGA & NPC BADGE TYPES ── */
+.rt-enemy   { border-color:rgba(180,40,40,0.6);  color:#e06060; }
+.rt-npc     { border-color:rgba(150,150,230,0.5); color:#a0a0f0; }
+
+/* ── BUILDGRID RESTORED — showSec fix ── */

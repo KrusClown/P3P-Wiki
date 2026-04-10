@@ -525,6 +525,19 @@
     12: { STR:20, MAG:20, END:20, AGI:20, LUK:20, SKL:20 }, // Ryoji (non-playable)
     13: { STR:78, MAG:72, END:70, AGI:75, LUK:65, SKL:75 }, // Metis (FES)
     14: { STR:10, MAG:10, END:10, AGI:10, LUK:10, SKL:10 }, // Takeharu (NPC)
+    // Strega
+    15: { STR:65, MAG:80, END:60, AGI:75, LUK:60, SKL:70 }, // Takaya
+    16: { STR:60, MAG:75, END:65, AGI:70, LUK:55, SKL:72 }, // Jin
+    17: { STR:50, MAG:88, END:55, AGI:68, LUK:65, SKL:65 }, // Chidori
+    // NPCs
+    18: { STR:95, MAG:95, END:95, AGI:95, LUK:95, SKL:95 }, // Elizabeth
+    19: { STR:95, MAG:95, END:95, AGI:95, LUK:95, SKL:95 }, // Theodore
+    20: { STR:10, MAG:10, END:10, AGI:10, LUK:10, SKL:10 }, // Igor
+    21: { STR:10, MAG:10, END:10, AGI:10, LUK:10, SKL:10 }, // Pharos
+    22: { STR:99, MAG:99, END:99, AGI:99, LUK:99, SKL:99 }, // Nyx Avatar
+    23: { STR:10, MAG:10, END:10, AGI:10, LUK:10, SKL:10 }, // Kenji
+    24: { STR:10, MAG:10, END:10, AGI:10, LUK:10, SKL:10 }, // Hidetoshi
+    25: { STR:10, MAG:10, END:10, AGI:10, LUK:10, SKL:10 }, // Maiko
   };
 
   const STAT_KEYS   = ['STR','MAG','END','AGI','LUK','SKL'];
