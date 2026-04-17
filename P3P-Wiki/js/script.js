@@ -306,7 +306,7 @@ function buildGrid() {
         <div class="portrait-overlay"></div>
         <div class="p-arcana">${c.arcana}</div>
         <div class="p-route ${routeClass(c.filter)}">${routeLabel(c.filter)}</div>
-        <button class="${uploadClass}" onclick="event.stopPropagation();triggerUpload(${c.id})">+ ${uploadLabel}</button>
+        <button class="${uploadClass}" onclick="event.stopPropagation();triggerUpload(${c.id})">${uploadLabel}</button>
         <input class="upload-input" type="file" id="upload-${c.id}" accept="image/*" onchange="handleUpload(${c.id}, this)">
       </div>
       <div class="card-body">
@@ -317,10 +317,6 @@ function buildGrid() {
           <div class="meta-i"><span class="meta-l">Weapon</span><span class="meta-v">${c.weapon}</span></div>
           <div class="meta-i"><span class="meta-l">Birthday</span><span class="meta-v">${c.bday}</span></div>
           <div class="meta-i"><span class="meta-l">Route</span><span class="meta-v">${c.routeLabel}</span></div>
-        </div>
-        <div class="card-unlock">
-          <div class="ul-tag">Unlock</div>
-          <div class="ul-text">${shortUnlock}</div>
         </div>
       </div>
       <div class="card-glow"></div>`;
