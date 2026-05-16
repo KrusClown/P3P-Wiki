@@ -5,7 +5,7 @@ This project showcases the members of SEES (Specialized Extracurricular Executio
 ## Technologies Used
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=html,css,js,windows,python,ruby&perline=4" />
+  <img src="https://skillicons.dev/icons?i=html,css,js,windows,python,ruby,vscode,github&perline=4" />
 </p>
 
 ##  How to Run
