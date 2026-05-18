@@ -212,7 +212,7 @@ const CHARS = [
     name:'Pharos', role:'Mysterious Child',
     arcana:'Death', persona:'Thanatos (fragment)',
     bday:'Unknown', weapon:'N/A', routeLabel:'Both Routes', va:'Akira Ishida (JP)',
-    img:'', initial:'PH',
+    img:'assets/images/characters/Pharos.jpeg', initial:'PH',
     desc:'A mysterious young boy who appears in the protagonist\'s dreams, visiting their dorm room at night. Pharos speaks in riddles and seems deeply connected to the protagonist\'s fate and the nature of Death. His true identity is one of the game\'s most significant revelations and is tied directly to the game\'s climax.',
     unlock:'Appears automatically through story events — he visits the protagonist\'s dorm room at night beginning early in the game. Ranking up conversations with him advances the Death Arcana Social Link (both routes).',
     skills:['Death Arcana S.Link','Night Visits Only','Key Story Role','Connected to Ryoji']
@@ -222,7 +222,7 @@ const CHARS = [
     name:'Nyx Avatar', role:'Final Boss · Goddess of Death',
     arcana:'All 12 Arcana', persona:'Erebus / Nyx',
     bday:'Unknown', weapon:'Cosmic Power', routeLabel:'Both Routes (final boss)', va:'N/A',
-    img:'', initial:'NX',
+    img:'assets/images/characters/Nyx.jpg', initial:'NX',
     desc:'The true final boss of Persona 3 and the ultimate obstacle standing between humanity and destruction. Nyx Avatar manifests through 12 arcana phases, each with different weaknesses and abilities. Defeating it requires the bonds the protagonist has built throughout the entire game — their Social Links literally empower the finishing blow.',
     unlock:'Appears at the top of Tartarus on January 31st during the final confrontation. All 12 phases must be overcome. Recommended level: 75+. Ensure all Social Links are maxed before this date for the true ending.',
     skills:['12 Arcana Phases','All Element Coverage','Moonless Gown','Death Incarnate']
