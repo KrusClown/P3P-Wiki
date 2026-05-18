@@ -151,7 +151,7 @@ const CHARS = [
     name:'Takaya Sakaki', role:'Strega Leader · Antagonist',
     arcana:'Tower', persona:'Hypnos',
     bday:'Unknown', weapon:'Revolver', routeLabel:'Both Routes (antagonist)', va:'Jouji Nakata (JP)',
-    img:'', initial:'TA',
+    img:'assets/images/characters/Takaya-Sakaki.jpg', initial:'TA',
     desc:'The charismatic and nihilistic leader of Strega, a group of artificial Persona-users. Takaya views the end of the Dark Hour as a death sentence — it is the only thing keeping him alive — and works to destroy SEES\'s mission. Cold, theatrical and philosophical, he is one of P3\'s most memorable antagonists.',
     unlock:'Story antagonist — appears automatically through plot events. Not a playable character. Upload your own photo.',
     skills:['Hypnos Persona','Revolver Expert','Nihilistic Philosophy','Megidola (boss)']
@@ -161,7 +161,7 @@ const CHARS = [
     name:'Jin Shirato', role:'Strega Member · Bomber',
     arcana:'Hermit', persona:'Moros',
     bday:'Unknown', weapon:'Grenades / Bombs', routeLabel:'Both Routes (antagonist)', va:'Hiroki Tochi (JP)',
-    img:'', initial:'JN',
+    img:'assets/images/characters/Jin-Shirato.jpeg', initial:'JN',
     desc:'Takaya\'s loyal right-hand man and tactical support of Strega. Jin is calculating and analytical, providing logistical support for Strega\'s operations. He uses bomb-based attacks in battle and is fiercely devoted to Takaya above all else. His fate is directly tied to Strega\'s final confrontation with SEES.',
     unlock:'Story antagonist — appears automatically. Not playable. Upload your own photo.',
     skills:['Moros Persona','Bomb Attacks','Bufudyne','Tactical Support']
@@ -171,7 +171,7 @@ const CHARS = [
     name:'Chidori Yoshino', role:'Strega Member · Artist',
     arcana:'Priestess', persona:'Medea',
     bday:'November 8', weapon:'Cleaver', routeLabel:'Both Routes (linked to Junpei)', va:'Miyuki Sawashiro (JP)',
-    img:'', initial:'CH',
+    img:'assets/images/characters/Chidori-Yoshino.jpeg', initial:'CH',
     desc:'A quiet, detached member of Strega who expresses herself through obsessive sketching in her notebook. Chidori develops a complex and deeply emotional bond with Junpei that forms one of P3\'s most heartbreaking storylines. Her Persona Medea has powerful healing and poison abilities.',
     unlock:'Appears through story events connected to Junpei\'s arc. Her relationship with Junpei unfolds across multiple story beats in both routes. Not playable. Upload your own photo.',
     skills:['Medea Persona','Poison Mist','Mediarama','Regenerate 3']
@@ -182,7 +182,7 @@ const CHARS = [
     name:'Elizabeth', role:'Velvet Room Attendant',
     arcana:'Fool (special)', persona:'Thanatos (ultimate)',
     bday:'Unknown', weapon:'Compendium / Magic', routeLabel:'Male Route (S.Link: Empress)', va:'Miyuki Sawashiro (JP)',
-    img:'', initial:'EL',
+    img:'assets/images/characters/Elizabeth.jpg', initial:'EL',
     desc:'The Velvet Room attendant who assists the male protagonist. Cheerful, curious and fascinatingly naive about the human world, Elizabeth manages the Persona Compendium and issues optional requests. She has her own boss fight and Social Link exclusive to the male route, making her one of the most beloved characters in the series.',
     unlock:'Available from the start of the game in the Velvet Room (male route). Social Link (Empress) begins automatically when you first visit and ranks up by completing her 55 requests throughout the game.',
     skills:['55 Request Quests','Compendium Access','Empress S.Link (Male)','Secret Boss Fight']
@@ -202,7 +202,7 @@ const CHARS = [
     name:'Igor', role:'Velvet Room Master',
     arcana:'Fool', persona:'N/A',
     bday:'Unknown', weapon:'N/A', routeLabel:'Both Routes', va:'Isamu Tanonaka (JP)',
-    img:'', initial:'IG',
+    img:'assets/images/characters/Igor.png', initial:'IG',
     desc:'The enigmatic long-nosed master of the Velvet Room who facilitates Persona fusion for the protagonist. Igor has appeared throughout the Persona series as a constant guide to Wild Card users. He speaks cryptically but always with the protagonist\'s best interests at heart, overseeing their journey toward their ultimate fate.',
     unlock:'Available immediately from the first Velvet Room visit. Not a Social Link in P3P — he is the Velvet Room host and fusion master for the entire game.',
     skills:['Persona Fusion','Compendium Registry','Special Fusion','Series Constant']
@@ -232,7 +232,7 @@ const CHARS = [
     name:'Kenji Tomochika', role:'Classmate · Social Link',
     arcana:'Magician', persona:'N/A',
     bday:'April 29', weapon:'N/A', routeLabel:'Both Routes', va:'N/A',
-    img:'', initial:'KJ',
+    img:'assets/images/characters/Kenji-Tomochika.jpg', initial:'KJ',
     desc:'The male protagonist\'s cheerful classmate who has an enthusiastic (and comedic) crush on a female teacher at Gekkoukan. His Social Link explores themes of youthful infatuation, growing up, and what it means to pursue impossible ideals. Ranking up his link is straightforward and available from early April.',
     unlock:'Social Link (Magician) available from April by talking to him at Gekkoukan High. Available on Male route. Spend time with him after school to progress his link.',
     skills:['Magician S.Link','Available April','Male Route Only','Comedy Relief']

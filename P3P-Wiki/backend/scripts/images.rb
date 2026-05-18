@@ -29,15 +29,15 @@ CHARACTERS = {
   13 => { name: 'Metis',               default: 'Metis.jpg' },
   14 => { name: 'Takeharu Kirijo',     default: 'Takeharu-Kirijo.jpeg' },
   # New slots — no default, must upload
-  15 => { name: 'Takaya Sakaki',       default: nil },
-  16 => { name: 'Jin Shirato',         default: nil },
-  17 => { name: 'Chidori Yoshino',     default: nil },
-  18 => { name: 'Elizabeth',           default: nil },
+  15 => { name: 'Takaya Sakaki',       default: 'Takaya-Sakaki.jpg' },
+  16 => { name: 'Jin Shirato',         default: 'Jin-Shirato.jpeg' },
+  17 => { name: 'Chidori Yoshino',     default: 'Chidori-Yoshino.jpeg' },
+  18 => { name: 'Elizabeth',           default: 'Elizabeth.jpg' },
   19 => { name: 'Theodore',            default: nil },
-  20 => { name: 'Igor',                default: nil },
+  20 => { name: 'Igor',                default: 'Igor.png' },
   21 => { name: 'Pharos',              default: nil },
   22 => { name: 'Nyx Avatar',          default: nil },
-  23 => { name: 'Kenji Tomochika',     default: nil },
+  23 => { name: 'Kenji Tomochika',     default: 'Kenji-Tomochika.jpg' },
   24 => { name: 'Hidetoshi Odagiri',   default: nil },
   25 => { name: 'Maiko Oohashi',       default: nil }
 }.freeze

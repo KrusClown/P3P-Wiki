@@ -105,10 +105,11 @@ app.add_middleware(
 )
 
 app.mount("/uploads", StaticFiles(directory=str(UPLOADS_DIR)), name="uploads")
+register_security(app)
 
 # ── HELPERS ──
 def row_to_dict(row) -> dict:
-    d = dict(row)
+    d = decrypt_row(dict(row))  # decrypt encrypted fields
     try:
         d["skills"] = json.loads(d.get("skills") or "[]")
     except Exception:
@@ -194,14 +195,18 @@ def create(c: CharacterIn):
     conn   = get_db()
     skills = c.skills if isinstance(c.skills, str) else json.dumps(c.skills)
     try:
+        # Validate fields
+        Validator.validate_text_field(c.name, "name")
+        # Encrypt sensitive fields
+        enc = encrypt_row({"desc_text": c.desc_text, "unlock_text": c.unlock_text, "va": c.va})
         conn.execute("""
             INSERT OR REPLACE INTO characters
             (id,name,role,arcana,persona,bday,weapon,route_label,va,
              filter_type,initial,desc_text,unlock_text,skills,img_path)
             VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
         """, (c.id, c.name, c.role, c.arcana, c.persona, c.bday, c.weapon,
-              c.route_label, c.va, c.filter_type, c.initial, c.desc_text,
-              c.unlock_text, skills, c.img_path))
+              c.route_label, enc["va"], c.filter_type, c.initial, enc["desc_text"],
+              enc["unlock_text"], skills, c.img_path))
         log(conn, "seeded", c.id, c.name)
         conn.commit()
     except Exception as e:
@@ -237,6 +242,10 @@ async def upload_photo(cid: int, file: UploadFile = File(...)):
     mb = len(content) / 1_048_576
     if mb > MAX_SIZE_MB:
         raise HTTPException(413, f"Max {MAX_SIZE_MB}MB")
+    # Validate by magic bytes — not just extension
+    validate_image_bytes(content, file.filename)
+    # Log upload attempt
+    audit.write("PHOTO_UPLOAD", detail=f"char={cid} file={file.filename} size={mb:.2f}MB")
 
     conn = get_db()
     row  = conn.execute("SELECT custom_img FROM characters WHERE id=?", (cid,)).fetchone()
@@ -314,6 +323,18 @@ def stats():
     events = conn.execute("SELECT event, COUNT(*) n FROM events GROUP BY event").fetchall()
     conn.close()
     return {e["event"]: e["n"] for e in events}
+
+
+@app.get("/api/security/audit")
+def get_audit_log(n: int = 50):
+    """Last N security events from the audit log."""
+    return {"events": audit.tail(n)}
+
+@app.get("/api/security/rate-status")
+def rate_status(request: Request):
+    """Rate limit status for the calling IP."""
+    ip = request.client.host if request.client else "unknown"
+    return rate_limiter.get_stats(ip)
 
 if __name__ == "__main__":
     import uvicorn
