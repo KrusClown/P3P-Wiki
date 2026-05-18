@@ -20,37 +20,55 @@ Persona 3 Portable © Atlus.
 
 ```text
 P3P-Wiki/
-│
 ├── index.html
 │
-├── css/
-│   └── styles.css
-│
-├── js/
-│   ├── script.js
-│   ├── effects.js
-│   ├── optimizations.js
-│   ├── cookies.js
-│   ├── new-effects.js
-│   └── premium-effects.js
-│
 ├── assets/
+│   ├── css/
+│   │   └── styles.css
+│   │
+│   ├── js/
+│   │   ├── api.js
+│   │   ├── content-sections.js
+│   │   ├── cookies.js
+│   │   ├── effects.js
+│   │   ├── new-effects.js
+│   │   ├── optimizations.js
+│   │   ├── premium-effects.js
+│   │   └── script.js
+│   │
 │   └── images/
 │       └── characters/
 │           ├── Aigis.jpg
 │           ├── Akihiko-Sanada.jpeg
+│           ├── Chidori-Yoshino.jpeg
+│           ├── Elizabeth.jpg
 │           ├── Female-Protagonist.jpeg
 │           ├── Fuuka-Yamagishi.jpeg
+│           ├── Igor.png
+│           ├── Jin-Shirato.jpeg
 │           ├── Junpei-Iori.jpeg
 │           ├── Ken-Amada.jpeg
+│           ├── Kenji-Tomochika.jpg
 │           ├── Koromaru.jpeg
 │           ├── Male-Protagonist.jpeg
 │           ├── Metis.jpg
 │           ├── Mitsuru-Kirijo.jpeg
+│           ├── Nyx.jpg
+│           ├── Pharos.jpeg
 │           ├── Ryoji-Mochizuki.jpeg
 │           ├── Shinjiro-Aragaki.jpg
+│           ├── Takaya-Sakaki.jpg
 │           ├── Takeharu-Kirijo.jpeg
 │           └── Yukari-Takeba.jpeg
 │
-├── .gitignore
-└── README.md
+├── css/
+│   └── styles.css
+│
+└── js/
+    ├── cookies.js
+    ├── effects.js
+    ├── new-effects.js
+    ├── optimizations.js
+    ├── premium-effects.js
+    ├── script.js
+    └── api.js
