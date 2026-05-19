@@ -33,13 +33,13 @@ CHARACTERS = {
   16 => { name: 'Jin Shirato',         default: 'Jin-Shirato.jpeg' },
   17 => { name: 'Chidori Yoshino',     default: 'Chidori-Yoshino.jpeg' },
   18 => { name: 'Elizabeth',           default: 'Elizabeth.jpg' },
-  19 => { name: 'Theodore',            default: nil },
+  19 => { name: 'Theodore',            default: 'Theodore.png' },
   20 => { name: 'Igor',                default: 'Igor.png' },
   21 => { name: 'Pharos',              default: 'Pharos.jpeg' },
   22 => { name: 'Nyx Avatar',          default: 'Nyx.jpg' },
   23 => { name: 'Kenji Tomochika',     default: 'Kenji-Tomochika.jpg' },
-  24 => { name: 'Hidetoshi Odagiri',   default: nil },
-  25 => { name: 'Maiko Oohashi',       default: nil }
+  24 => { name: 'Hidetoshi Odagiri',   default: 'Hidetoshi-Odagiri.jpeg' },
+  25 => { name: 'Maiko Oohashi',       default: 'Maiko-Oohashi.jpeg' }
 }.freeze
 
 def file_kb(path)

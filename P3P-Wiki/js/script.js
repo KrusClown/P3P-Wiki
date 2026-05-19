@@ -192,7 +192,7 @@ const CHARS = [
     name:'Theodore', role:'Velvet Room Attendant',
     arcana:'Fool (special)', persona:'Thanatos (ultimate)',
     bday:'Unknown', weapon:'Compendium / Magic', routeLabel:'Female Route (S.Link: Empress)', va:'Akira Ishida (JP)',
-    img:'', initial:'TH',
+    img:'assets/images/characters/Theodore.png', initial:'TH',
     desc:'Elizabeth\'s younger brother and the Velvet Room attendant for the female protagonist. More reserved and earnest than his sister, Theodore develops a touching personal journey as he experiences human emotions for the first time through his bond with the female protagonist. His Social Link is one of the female route\'s most rewarding.',
     unlock:'Available from the start of the game in the Velvet Room (female route only). Social Link (Empress) ranks up by completing his requests throughout the game — exclusive to the Female Protagonist route.',
     skills:['Request Quests','Compendium Access','Empress S.Link (Female)','Secret Boss Fight']
@@ -242,7 +242,7 @@ const CHARS = [
     name:'Hidetoshi Odagiri', role:'Student Council · Social Link',
     arcana:'Emperor', persona:'N/A',
     bday:'August 8', weapon:'N/A', routeLabel:'Female Route Only', va:'N/A',
-    img:'', initial:'HO',
+    img:'assets/images/characters/Hidetoshi-Odagiri.jpeg', initial:'HO',
     desc:'A strict and principled member of the student council who takes rules extremely seriously. Hidetoshi\'s Social Link explores themes of justice, authority and what it truly means to uphold principles in a flawed world. His arc has surprising emotional depth beneath his rigid exterior.',
     unlock:'Social Link (Emperor) available on Female route from May by joining the Student Council. Spend time with him at the student council room to progress the link.',
     skills:['Emperor S.Link (FeMC)','Available May','Student Council','Justice Theme']
@@ -252,7 +252,7 @@ const CHARS = [
     name:'Maiko Oohashi', role:'Child at Shrine · Social Link',
     arcana:'Hanged Man', persona:'N/A',
     bday:'Unknown', weapon:'N/A', routeLabel:'Both Routes', va:'N/A',
-    img:'', initial:'MO',
+    img:'assets/images/characters/Maiko-Oohashi.jpeg', initial:'MO',
     desc:'A young girl who can be found at the shrine near the school, struggling with her parents\' impending divorce. Her Social Link is one of the most emotionally affecting in the game — deceptively simple on the surface but deeply moving. She also has a connection to Koromaru\'s backstory at the shrine.',
     unlock:'Social Link (Hanged Man) available from May on weekends at the Naganaki Shrine. Available on both routes. Bring Weird Takoyaki or Takoyaki snacks to speed up link progression.',
     skills:['Hanged Man S.Link','Weekend Only','Shrine Location','Emotional Storyline']
