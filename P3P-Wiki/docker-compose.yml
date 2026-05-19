@@ -1,0 +1,114 @@
+# ═══════════════════════════════════════════
+# P3P ARCHIVE — docker-compose.yml
+# Orchestrates frontend + backend containers
+#
+# Usage:
+#   docker compose up -d          # start all
+#   docker compose down           # stop all
+#   docker compose logs -f        # view logs
+#   docker compose ps             # status
+# ═══════════════════════════════════════════
+
+version: "3.9"
+
+services:
+
+  # ── FRONTEND — Nginx serving the wiki ──
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: p3p_frontend
+    ports:
+      - "80:80"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - p3p_net
+    environment:
+      - NGINX_HOST=localhost
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    labels:
+      - "com.p3p.service=frontend"
+      - "com.p3p.description=Nginx wiki server"
+
+  # ── BACKEND — FastAPI REST API ──
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: p3p_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist database and uploads outside the container
+      - p3p_db:/app/db
+      - p3p_uploads:/app/uploads
+      - p3p_backups:/app/backups
+    environment:
+      - P3P_ENCRYPT_KEY=${P3P_ENCRYPT_KEY:-changeme_use_env_file}
+      - P3P_SECRET=${P3P_SECRET:-changeme_use_env_file}
+    restart: unless-stopped
+    networks:
+      - p3p_net
+    healthcheck:
+      test: ["CMD", "python", "-c",
+             "import urllib.request; urllib.request.urlopen('http://localhost:8000/')"]
+      interval: 30s
+      timeout: 10s
+      start_period: 15s
+      retries: 3
+    labels:
+      - "com.p3p.service=backend"
+      - "com.p3p.description=FastAPI character database"
+
+  # ── SEED JOB — Runs once to populate the DB ──
+  seed:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: p3p_seed
+    command: >
+      sh -c "
+        echo 'Waiting for backend...' &&
+        sleep 8 &&
+        ruby scripts/seed.rb
+      "
+    depends_on:
+      backend:
+        condition: service_healthy
+    volumes:
+      - ./backend/scripts:/app/scripts
+    environment:
+      - API_BASE=http://backend:8000/api
+    networks:
+      - p3p_net
+    restart: "no"
+    profiles:
+      - seed
+    labels:
+      - "com.p3p.service=seed"
+
+# ── VOLUMES — Persistent data ──
+volumes:
+  p3p_db:
+    name: p3p_database
+    driver: local
+  p3p_uploads:
+    name: p3p_uploads
+    driver: local
+  p3p_backups:
+    name: p3p_backups
+    driver: local
+
+# ── NETWORK ──
+networks:
+  p3p_net:
+    name: p3p_network
+    driver: bridge

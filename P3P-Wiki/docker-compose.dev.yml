@@ -1,0 +1,38 @@
+# ═══════════════════════════════════════════
+# P3P ARCHIVE — docker-compose.dev.yml
+# Development overrides:
+#   - Hot reload on code changes
+#   - Verbose logging
+#   - No prod optimizations
+#
+# Usage:
+#   docker compose -f docker-compose.yml \
+#                  -f docker-compose.dev.yml up
+# ═══════════════════════════════════════════
+
+version: "3.9"
+
+services:
+
+  frontend:
+    build:
+      target: development
+    volumes:
+      # Mount source for live changes
+      - ./index.html:/usr/share/nginx/html/index.html
+      - ./css:/usr/share/nginx/html/css
+      - ./js:/usr/share/nginx/html/js
+      - ./assets:/usr/share/nginx/html/assets
+    environment:
+      - NGINX_ENTRYPOINT_QUIET_LOGS=0
+
+  backend:
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+    volumes:
+      # Mount source for hot reload
+      - ./backend/main.py:/app/main.py
+      - ./backend/security.py:/app/security.py
+      - ./backend/scripts:/app/scripts
+    environment:
+      - P3P_ENCRYPT_KEY=dev_key_not_for_production
+      - P3P_SECRET=dev_secret_not_for_production
