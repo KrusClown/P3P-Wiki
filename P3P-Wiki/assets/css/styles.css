@@ -789,3 +789,478 @@ footer {
 .rt-npc     { border-color:rgba(150,150,230,0.5); color:#a0a0f0; }
 
 /* ── BUILDGRID RESTORED — showSec fix ── */
+
+/* ═══════════════════════════════════════════
+   COLORFUL OVERHAUL — Live Colors & Effects
+═══════════════════════════════════════════ */
+
+/* ── RAINBOW ANIMATED BACKGROUND ── */
+@keyframes bgShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body {
+  background: linear-gradient(
+    135deg,
+    #0a0608, #120518, #08101a, #0a0a0a, #180810
+  );
+  background-size: 400% 400%;
+  animation: bgShift 18s ease infinite;
+}
+
+/* ── HERO GLOW RADIALS — more colorful ── */
+.hero-bg {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 110%, rgba(232,64,96,0.28) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 70% at 85% 35%,  rgba(120,60,240,0.18) 0%, transparent 55%),
+    radial-gradient(ellipse 55% 45% at 15% 25%,  rgba(0,180,255,0.12)  0%, transparent 50%),
+    radial-gradient(ellipse 40% 40% at 70% 80%,  rgba(255,180,0,0.10)  0%, transparent 45%),
+    radial-gradient(ellipse 35% 35% at 30% 60%,  rgba(0,255,150,0.08)  0%, transparent 40%);
+}
+
+/* ── PRISMATIC HERO TITLE ── */
+@keyframes prismShift {
+  0%   { filter: hue-rotate(0deg)   drop-shadow(0 0 40px rgba(232,64,96,0.7)); }
+  25%  { filter: hue-rotate(30deg)  drop-shadow(0 0 50px rgba(255,120,0,0.7)); }
+  50%  { filter: hue-rotate(60deg)  drop-shadow(0 0 45px rgba(255,220,0,0.6)); }
+  75%  { filter: hue-rotate(-30deg) drop-shadow(0 0 50px rgba(180,0,255,0.6)); }
+  100% { filter: hue-rotate(0deg)   drop-shadow(0 0 40px rgba(232,64,96,0.7)); }
+}
+
+.hero-title em {
+  animation: prismShift 6s ease-in-out infinite;
+  background: linear-gradient(135deg, #ff6b85, #ff9a3c, #ffdb6b, #6bffb8, #6bb5ff, #c56bff, #ff6b85);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: prismShift 6s ease infinite, gradientFlow 4s ease infinite;
+}
+
+@keyframes gradientFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── RAINBOW STATS NUMBERS ── */
+.hstat-n {
+  background: linear-gradient(135deg, #ff6b85, #ff9a3c, #ffdb6b);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientFlow 3s ease infinite;
+  filter: drop-shadow(0 0 12px rgba(255,150,80,0.5));
+}
+
+/* ── COLORFUL CARD BORDERS BY ARCANA ── */
+.char-card {
+  border-top: 2px solid transparent;
+  transition: background 0.25s, transform 0.35s cubic-bezier(0.16,1,0.3,1), border-color 0.3s !important;
+}
+.char-card:nth-child(7n+1):hover  { border-top-color: #ff6b85; box-shadow: 0 0 30px rgba(232,64,96,0.2); }
+.char-card:nth-child(7n+2):hover  { border-top-color: #ff9a3c; box-shadow: 0 0 30px rgba(255,154,60,0.2); }
+.char-card:nth-child(7n+3):hover  { border-top-color: #ffdb6b; box-shadow: 0 0 30px rgba(255,219,107,0.2); }
+.char-card:nth-child(7n+4):hover  { border-top-color: #6bffb8; box-shadow: 0 0 30px rgba(107,255,184,0.2); }
+.char-card:nth-child(7n+5):hover  { border-top-color: #6bb5ff; box-shadow: 0 0 30px rgba(107,181,255,0.2); }
+.char-card:nth-child(7n+6):hover  { border-top-color: #c56bff; box-shadow: 0 0 30px rgba(197,107,255,0.2); }
+.char-card:nth-child(7n+0):hover  { border-top-color: #ff6bb5; box-shadow: 0 0 30px rgba(255,107,181,0.2); }
+
+/* ── ANIMATED PORTRAIT OVERLAY on hover ── */
+@keyframes rainbowOverlay {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.char-card:hover .portrait-overlay {
+  background: linear-gradient(
+    to bottom,
+    transparent 20%,
+    rgba(10,6,8,0.3) 60%,
+    var(--card-bg) 100%
+  );
+}
+
+/* ── RAINBOW CARD GLOW ── */
+@keyframes rainbowGlow {
+  0%   { background: linear-gradient(90deg, transparent, #ff6b85, transparent); }
+  20%  { background: linear-gradient(90deg, transparent, #ff9a3c, transparent); }
+  40%  { background: linear-gradient(90deg, transparent, #ffdb6b, transparent); }
+  60%  { background: linear-gradient(90deg, transparent, #6bffb8, transparent); }
+  80%  { background: linear-gradient(90deg, transparent, #6bb5ff, transparent); }
+  100% { background: linear-gradient(90deg, transparent, #c56bff, transparent); }
+}
+
+.char-card:hover .card-glow {
+  opacity: 1;
+  animation: rainbowGlow 2s linear infinite;
+}
+
+/* ── COLORFUL NAV LINKS ── */
+.nav-link:nth-child(1):hover { color: #ff6b85; text-shadow: 0 0 12px rgba(255,107,133,0.6); }
+.nav-link:nth-child(2):hover { color: #ff9a3c; text-shadow: 0 0 12px rgba(255,154,60,0.6); }
+.nav-link:nth-child(3):hover { color: #ffdb6b; text-shadow: 0 0 12px rgba(255,219,107,0.6); }
+.nav-link:nth-child(4):hover { color: #6bffb8; text-shadow: 0 0 12px rgba(107,255,184,0.6); }
+.nav-link:nth-child(5):hover { color: #6bb5ff; text-shadow: 0 0 12px rgba(107,181,255,0.6); }
+.nav-link:nth-child(6):hover { color: #c56bff; text-shadow: 0 0 12px rgba(197,107,255,0.6); }
+
+.nav-link.active {
+  background: linear-gradient(135deg, #ff6b85, #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 8px rgba(200,100,200,0.4));
+}
+
+/* ── RAINBOW FILTER TAGS ── */
+.ftag:hover {
+  border-color: transparent;
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              linear-gradient(135deg, #ff6b85, #ff9a3c, #ffdb6b, #6bffb8, #6bb5ff, #c56bff) border-box;
+  color: var(--cream);
+}
+
+.ftag.on {
+  border-color: transparent;
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              linear-gradient(135deg, #ff6b85, #c56bff) border-box;
+  color: var(--cream);
+}
+
+/* ── COLORFUL SEARCH BAR ── */
+#search:focus {
+  border-color: transparent;
+  background: linear-gradient(var(--surface), var(--surface)) padding-box,
+              linear-gradient(135deg, #ff6b85, #ff9a3c, #6bb5ff, #c56bff) border-box;
+  box-shadow: 0 0 20px rgba(197,107,255,0.15);
+}
+
+/* ── RAINBOW MODAL TOP BORDER ── */
+.modal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b85, #ff9a3c, #ffdb6b, #6bffb8, #6bb5ff, #c56bff, #ff6b85);
+  background-size: 200% 100%;
+  animation: gradientFlow 3s linear infinite;
+  z-index: 10;
+}
+
+/* ── COLORFUL MODAL UNLOCK BORDER ── */
+.modal-unlock-box {
+  border-left: 3px solid transparent;
+  background:
+    linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+    linear-gradient(135deg, #ff6b85, #c56bff) border-box;
+  border-image: linear-gradient(135deg, #ff6b85, #c56bff) 1;
+}
+
+/* ── RAINBOW SKILL PILLS ── */
+.skill {
+  border-color: transparent;
+  transition: all 0.3s;
+}
+.skill:nth-child(4n+1):hover { background: rgba(255,107,133,0.15); color: #ff6b85; border-color: #ff6b85; }
+.skill:nth-child(4n+2):hover { background: rgba(107,181,255,0.15); color: #6bb5ff; border-color: #6bb5ff; }
+.skill:nth-child(4n+3):hover { background: rgba(107,255,184,0.15); color: #6bffb8; border-color: #6bffb8; }
+.skill:nth-child(4n+0):hover { background: rgba(197,107,255,0.15); color: #c56bff; border-color: #c56bff; }
+
+/* ── COLORFUL SECTION LABEL ── */
+.sec-label {
+  background: linear-gradient(135deg, #ff6b85, #ff9a3c, #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── RAINBOW PRIMARY BUTTON ── */
+.btn-primary {
+  background: linear-gradient(135deg, #ff6b85, #ff9a3c, #c56bff);
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease infinite;
+  border: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(135deg, #c56bff, #6bb5ff, #ff6b85);
+  background-size: 200% 200%;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(197,107,255,0.5);
+}
+
+/* ── GHOST BUTTON RAINBOW BORDER ── */
+.btn-ghost {
+  border-color: transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(135deg, #ff6b85, #6bb5ff, #c56bff) border-box;
+}
+.btn-ghost:hover {
+  background: linear-gradient(rgba(197,107,255,0.08), rgba(197,107,255,0.08)) padding-box,
+              linear-gradient(135deg, #c56bff, #ff6b85, #6bffb8) border-box;
+  transform: translateY(-2px);
+}
+
+/* ── COLORFUL EYEBROW ── */
+.eyebrow {
+  background: linear-gradient(135deg, #ffdb6b, #ff9a3c, #ff6b85);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientFlow 4s ease infinite;
+}
+.eyebrow::before, .eyebrow::after {
+  background: linear-gradient(to right, transparent, #ffdb6b, #ff9a3c, transparent);
+  height: 1px;
+}
+
+/* ── RAINBOW ORBS ── */
+.orb1 { background: radial-gradient(circle, rgba(232,64,96,0.15), rgba(255,100,0,0.08), transparent 70%); }
+.orb2 { background: radial-gradient(circle, rgba(107,181,255,0.12), rgba(120,60,240,0.06), transparent 70%); }
+.orb3 { background: radial-gradient(circle, rgba(107,255,184,0.10), rgba(0,200,150,0.05), transparent 70%); }
+
+/* ── COLORFUL SCROLLBAR ── */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff6b85, #c56bff);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #c56bff, #6bb5ff);
+}
+
+/* ── ABOUT CARDS RAINBOW HOVER ── */
+.about-card:nth-child(6n+1):hover { border-top-color: #ff6b85; }
+.about-card:nth-child(6n+2):hover { border-top-color: #ff9a3c; }
+.about-card:nth-child(6n+3):hover { border-top-color: #ffdb6b; }
+.about-card:nth-child(6n+4):hover { border-top-color: #6bffb8; }
+.about-card:nth-child(6n+5):hover { border-top-color: #6bb5ff; }
+.about-card:nth-child(6n+0):hover { border-top-color: #c56bff; }
+
+/* ── COLORFUL TARTARUS BLOCK LABELS ── */
+.tb-section-label {
+  background: linear-gradient(135deg, #ff6b85, #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── COLORFUL PARTY SLOT FILLED ── */
+.party-slot.filled {
+  background: linear-gradient(135deg, rgba(255,107,133,0.06), rgba(197,107,255,0.06));
+  border-color: transparent;
+  border-image: linear-gradient(135deg, #ff6b85, #c56bff) 1;
+}
+
+/* ── UPLOAD BTN RAINBOW ── */
+.upload-btn.upload-btn-visible {
+  border-color: transparent;
+  background: linear-gradient(rgba(10,6,8,0.9), rgba(10,6,8,0.9)) padding-box,
+              linear-gradient(135deg, #ff6b85, #ff9a3c, #c56bff) border-box;
+  color: #ff9a3c;
+}
+
+/* ── PULSING RAINBOW VIGNETTE ── */
+@keyframes rainbowVignette {
+  0%   { opacity: 0.5; }
+  33%  { opacity: 0.8; }
+  66%  { opacity: 0.6; }
+  100% { opacity: 0.5; }
+}
+.vignette-pulse {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    rgba(180,20,60,0.2) 75%,
+    rgba(10,4,6,0.7) 100%
+  );
+  animation: rainbowVignette 4s ease-in-out infinite;
+}
+
+/* ── COLORFUL TOAST NOTIFICATION ── */
+#p3p-toast {
+  background: linear-gradient(rgba(18,13,16,0.95), rgba(18,13,16,0.95)) padding-box,
+              linear-gradient(135deg, #ff6b85, #c56bff) border-box;
+  border: 1px solid transparent;
+  color: var(--cream);
+}
+
+/* ── COLORFUL IDLE OVERLAY ── */
+#idle-eyebrow {
+  background: linear-gradient(135deg, #ff6b85, #ff9a3c, #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: gradientFlow 2s ease infinite, flicker 4s ease-in-out infinite;
+}
+
+#idle-time {
+  background: linear-gradient(135deg, #ff6b85, #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  filter: drop-shadow(0 0 20px rgba(197,107,255,0.5));
+}
+
+/* ── COLORFUL RADAR CHART ── */
+.radar-area {
+  fill: rgba(197,107,255,0.12);
+  stroke: url(#radarGradient);
+  filter: drop-shadow(0 0 8px rgba(197,107,255,0.5));
+}
+
+/* ── STAT BAR RAINBOW ── */
+.radar-stat-fill {
+  background: linear-gradient(90deg, #ff6b85, #ff9a3c, #ffdb6b, #6bffb8, #6bb5ff, #c56bff) !important;
+  background-size: 300% 100% !important;
+  animation: gradientFlow 3s linear infinite !important;
+}
+
+/* ── COLORFUL MONTH TABS ── */
+.mtab:hover { border-color: transparent; color: var(--cream); }
+.mtab:nth-child(10n+1):hover  { border-color: #ff6b85; color: #ff6b85; }
+.mtab:nth-child(10n+2):hover  { border-color: #ff7a5c; color: #ff7a5c; }
+.mtab:nth-child(10n+3):hover  { border-color: #ff9a3c; color: #ff9a3c; }
+.mtab:nth-child(10n+4):hover  { border-color: #ffdb6b; color: #ffdb6b; }
+.mtab:nth-child(10n+5):hover  { border-color: #6bffb8; color: #6bffb8; }
+.mtab:nth-child(10n+6):hover  { border-color: #6bffee; color: #6bffee; }
+.mtab:nth-child(10n+7):hover  { border-color: #6bb5ff; color: #6bb5ff; }
+.mtab:nth-child(10n+8):hover  { border-color: #8a6bff; color: #8a6bff; }
+.mtab:nth-child(10n+9):hover  { border-color: #c56bff; color: #c56bff; }
+.mtab:nth-child(10n+0):hover  { border-color: #ff6bb5; color: #ff6bb5; }
+
+.mtab.active {
+  border-color: transparent;
+  background: linear-gradient(var(--card-bg), var(--card-bg)) padding-box,
+              linear-gradient(135deg, #ff6b85, #c56bff) border-box;
+  color: var(--cream);
+}
+
+/* ── COLORFUL EXAM BLOCK ── */
+.exam-block {
+  border-left: 3px solid transparent;
+  background:
+    linear-gradient(rgba(255,107,133,0.04), rgba(255,107,133,0.04)) padding-box,
+    linear-gradient(135deg, #ff6b85, #c56bff) border-box;
+}
+
+/* ── QUIZ CORRECT / WRONG COLORS ── */
+.quiz-opt.correct { border-color: #6bffb8; color: #6bffb8; background: rgba(107,255,184,0.1); }
+.quiz-opt.wrong   { border-color: #ff6b85; color: #ff6b85; background: rgba(255,107,133,0.1); }
+
+/* ── API STATUS BADGE RAINBOW ── */
+#api-status-badge {
+  background: linear-gradient(rgba(10,6,8,0.9), rgba(10,6,8,0.9)) padding-box,
+              linear-gradient(135deg, #6bffb8, #6bb5ff) border-box !important;
+  border: 1px solid transparent !important;
+  color: #6bffb8 !important;
+}
+
+/* ── COLORFUL SECTION HEADER TITLE ── */
+.sec-title {
+  background: linear-gradient(135deg, var(--cream) 60%, #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── HERO STAT LABELS COLORED ── */
+.hstat-l {
+  background: linear-gradient(135deg, #ff9a3c, #ffdb6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 6px rgba(255,180,60,0.3));
+}
+
+/* ── COLORFUL CARD ARCANA BADGE ── */
+.p-arcana {
+  background: rgba(10,6,8,0.82) !important;
+  border: 1px solid transparent !important;
+  background-clip: padding-box !important;
+  outline: 1px solid;
+  outline-color: rgba(255,219,107,0.4);
+  color: #ffdb6b !important;
+}
+
+/* ── CONSTELLATION STARS COLORFUL ── */
+#constellation-canvas { opacity: 0.65; }
+
+/* ── BLOOD MOON MORE VIVID ── */
+#blood-moon {
+  background:
+    radial-gradient(circle at 38% 35%,
+      rgba(255,80,40,0.06)  0%,
+      rgba(200,40,40,0.22)  45%,
+      rgba(140,10,60,0.32)  70%,
+      rgba(80,0,100,0.18)   88%,
+      transparent           100%
+    ),
+    radial-gradient(circle at 50% 50%,
+      rgba(255,100,50,0.08) 0%,
+      rgba(200,30,80,0.15)  50%,
+      transparent           80%
+    );
+  box-shadow:
+    inset -30px -20px 80px rgba(180,20,60,0.35),
+    inset 20px 15px 60px rgba(240,80,40,0.12),
+    0 0 120px rgba(200,30,80,0.18),
+    0 0 200px rgba(140,0,100,0.12);
+}
+
+/* ── GLITCH EXTRA COLOR ── */
+.glitch-wrap::before {
+  color: #6bb5ff;
+  text-shadow: -3px 0 #6bb5ff;
+}
+.glitch-wrap::after {
+  color: #6bffb8;
+  text-shadow: 3px 0 #6bffb8;
+}
+
+/* ── COOKIE BANNER RAINBOW BORDER ── */
+#cookie-banner::before {
+  background: linear-gradient(90deg, #ff6b85, #ff9a3c, #ffdb6b, #6bffb8, #6bb5ff, #c56bff, #ff6b85);
+  background-size: 200% 100%;
+  animation: gradientFlow 3s linear infinite;
+}
+#cookie-accept {
+  background: linear-gradient(135deg, #ff6b85, #c56bff);
+  background-size: 200% 200%;
+  animation: gradientFlow 3s ease infinite;
+}
+#cookie-accept:hover {
+  background: linear-gradient(135deg, #c56bff, #6bb5ff);
+  box-shadow: 0 8px 24px rgba(197,107,255,0.4);
+}
+
+/* ── CARD NAME HOVER COLORFUL ── */
+.char-card:hover .card-name {
+  background: linear-gradient(135deg, var(--cream), #c56bff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── SECTION WIPE CURTAIN COLORS ── */
+#wipe-curtain::before {
+  background: linear-gradient(90deg,
+    #ff6b85, #ff9a3c, #ffdb6b,
+    #6bffb8, #6bb5ff, #c56bff, #ff6b85
+  );
+  background-size: 200% 100%;
+  animation: gradientFlow 1s linear infinite;
+}
+
+/* ── CARD UNLOCK BLOCK COLORED ── */
+.card-unlock {
+  border-left: 2px solid transparent;
+  background:
+    rgba(255,107,133,0.04) padding-box,
+    linear-gradient(135deg, #ff6b85, #c56bff) border-box;
+  border-image: none;
+}
+
